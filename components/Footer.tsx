@@ -50,7 +50,7 @@ export default function Footer() {
             <ul className="space-y-2 text-xs">
               <li>
                 <a
-                  href="https://github.com/Pomelo-Tools/pomelo"
+                  href="https://github.com/so-sc/pomelo"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground transition-colors"
@@ -60,22 +60,22 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://x.com"
+                  href="https://github.com/so-sc/pomelo/issues"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  Twitter / X
+                  Issues
                 </a>
               </li>
               <li>
                 <a
-                  href="https://discord.gg"
+                  href="https://github.com/so-sc/pomelo/discussions"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  Discord
+                  Discussions
                 </a>
               </li>
             </ul>
@@ -88,17 +88,17 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="https://github.com/Pomelo-Tools/pomelo/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="https://github.com/so-sc/pomelo/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                   MIT License
                 </a>
               </li>
               <li>
-                <a href="https://github.com/Pomelo-Tools/pomelo/releases" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="https://github.com/so-sc/pomelo/releases" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                   Changelog
                 </a>
               </li>
               <li>
-                <a href="https://github.com/Pomelo-Tools/pomelo/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                <a href="https://github.com/so-sc/pomelo/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                   Security Policy
                 </a>
               </li>

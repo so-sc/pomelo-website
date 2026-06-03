@@ -16,10 +16,10 @@ export default function Header() {
             <a href="#api" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               API Reference
             </a>
-            <a href="https://github.com/Pomelo-Tools/pomelo/releases" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            <a href="https://github.com/so-sc/pomelo/releases" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               Changelog
             </a>
-            <a href="https://github.com/Pomelo-Tools/pomelo" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            <a href="https://github.com/so-sc/pomelo" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               Showcase
             </a>
           </nav>
@@ -43,22 +43,9 @@ export default function Header() {
           <div className="flex items-center gap-1.5 border-l border-border pl-3.5">
             <ThemeToggle />
 
-            {/* X / Twitter */}
-            <a
-              href="https://x.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-              aria-label="X / Twitter"
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
-
             {/* GitHub */}
             <a
-              href="https://github.com/Pomelo-Tools/pomelo"
+              href="https://github.com/so-sc/pomelo"
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
