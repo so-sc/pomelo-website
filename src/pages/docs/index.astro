@@ -1,0 +1,22 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import DocsSidebar from "../../components/DocsSidebar.astro";
+import DocsContent from "../../components/DocsContent.astro";
+import DocsTOC from "../../components/DocsTOC.astro";
+import Footer from "../../components/Footer.astro";
+---
+
+<Layout>
+  <div class="flex min-h-screen flex-col">
+    <Header />
+    <div
+      class="mx-auto flex w-full max-w-[90rem] flex-1 items-start gap-4 px-4"
+    >
+      <DocsSidebar />
+      <DocsContent />
+      <DocsTOC />
+    </div>
+    <Footer />
+  </div>
+</Layout>
