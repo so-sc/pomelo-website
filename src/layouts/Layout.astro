@@ -1,0 +1,35 @@
+---
+import "../styles/globals.css";
+
+const {
+  title = "Pomelo Docs",
+  description = "Pomelo is an open-source competitive programming contest platform with automated code evaluation powered by Judge0.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="pomelo, contest platform, competitive programming, judge0, code evaluation"
+    />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>{title}</title>
+    <script is:inline>
+      const storedTheme = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const isDark = storedTheme === "dark" || (!storedTheme && prefersDark);
+      document.documentElement.classList.toggle("dark", isDark);
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

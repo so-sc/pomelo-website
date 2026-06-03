@@ -1,0 +1,29 @@
+---
+const headings = [
+  { id: "introduction", label: "Introduction" },
+  { id: "prerequisites", label: "Prerequisites" },
+  { id: "installation", label: "Installation" },
+  { id: "quickstart", label: "Quick Start" },
+  { id: "environment", label: "Environment Variables" },
+  { id: "docker", label: "Docker Setup" },
+  { id: "admin", label: "Bun CLI" },
+  { id: "troubleshooting", label: "Common Issues" },
+];
+---
+
+<aside class="sticky top-14 hidden h-[calc(100vh-3.5rem)] w-48 shrink-0 overflow-y-auto py-6 pl-6 lg:block">
+  <p class="mb-2 text-xs font-semibold uppercase tracking-wider text-foreground">
+    On this page
+  </p>
+  <nav aria-label="Table of contents">
+    <ul class="space-y-1.5 text-xs">
+      {headings.map((heading) => (
+        <li>
+          <a href={`#${heading.id}`} class="block text-muted-foreground transition-colors hover:text-foreground">
+            {heading.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</aside>

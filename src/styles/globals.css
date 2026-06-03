@@ -25,11 +25,6 @@
     --input: 156 100% 95.9%;
     --ring: 167 100% 36.1%;
     --sidebar: 0 0% 100%;
-    --chart-1: 167 100% 36.1%;
-    --chart-2: 165 76.8% 51.6%;
-    --chart-3: 163 85.3% 66.9%;
-    --chart-4: 159 93.5% 80.2%;
-    --chart-5: 156 100% 89.6%;
   }
 
   .dark {
@@ -79,8 +74,8 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
   --color-sidebar: hsl(var(--sidebar));
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains), "Fira Code", monospace;
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 *,
@@ -97,7 +92,7 @@ html {
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -106,21 +101,26 @@ code,
 pre,
 kbd,
 samp {
-  font-family: var(--font-mono);
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
 .dark-logo {
-  display: none !important;
+  display: none;
 }
 
 .light-logo {
-  display: block !important;
+  display: block;
 }
 
 html.dark .dark-logo {
-  display: block !important;
+  display: block;
 }
 
 html.dark .light-logo {
-  display: none !important;
+  display: none;
 }

@@ -1,0 +1,50 @@
+---
+import Logo from "./Logo.astro";
+---
+
+<footer class="w-full border-t border-border bg-card/50 px-4 py-12">
+  <div class="mx-auto max-w-[90rem]">
+    <div class="grid grid-cols-1 gap-8 border-b border-border pb-8 md:grid-cols-4">
+      <div class="flex flex-col gap-3">
+        <Logo />
+        <p class="mt-1 max-w-[200px] text-xs leading-relaxed text-muted-foreground">
+          Open-source competitive programming contest platform with automated code evaluation.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="mb-3 text-xs font-semibold uppercase tracking-wider text-foreground">Resources</h3>
+        <ul class="space-y-2 text-xs">
+          <li><a href="#introduction" class="text-muted-foreground transition-colors hover:text-foreground">Introduction</a></li>
+          <li><a href="#installation" class="text-muted-foreground transition-colors hover:text-foreground">Installation</a></li>
+          <li><a href="#environment" class="text-muted-foreground transition-colors hover:text-foreground">Environment Variables</a></li>
+          <li><a href="#docker" class="text-muted-foreground transition-colors hover:text-foreground">Docker Setup</a></li>
+          <li><a href="#troubleshooting" class="text-muted-foreground transition-colors hover:text-foreground">Troubleshooting</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="mb-3 text-xs font-semibold uppercase tracking-wider text-foreground">Community</h3>
+        <ul class="space-y-2 text-xs">
+          <li><a href="https://github.com/so-sc/pomelo" target="_blank" rel="noopener noreferrer" class="text-muted-foreground transition-colors hover:text-foreground">GitHub</a></li>
+          <li><a href="https://github.com/so-sc/pomelo/issues" target="_blank" rel="noopener noreferrer" class="text-muted-foreground transition-colors hover:text-foreground">Issues</a></li>
+          <li><a href="https://github.com/so-sc/pomelo/discussions" target="_blank" rel="noopener noreferrer" class="text-muted-foreground transition-colors hover:text-foreground">Discussions</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="mb-3 text-xs font-semibold uppercase tracking-wider text-foreground">Project</h3>
+        <ul class="space-y-2 text-xs">
+          <li><a href="https://github.com/so-sc/pomelo/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="text-muted-foreground transition-colors hover:text-foreground">MIT License</a></li>
+          <li><a href="https://github.com/so-sc/pomelo/releases" target="_blank" rel="noopener noreferrer" class="text-muted-foreground transition-colors hover:text-foreground">Changelog</a></li>
+          <li><a href="https://github.com/so-sc/pomelo/blob/main/SECURITY.md" target="_blank" rel="noopener noreferrer" class="text-muted-foreground transition-colors hover:text-foreground">Security Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center justify-between gap-4 pt-8 text-xs text-muted-foreground sm:flex-row">
+      <span>Copyright {new Date().getFullYear()} Pomelo. All rights reserved.</span>
+      <span class="text-muted-foreground/60">Released under the MIT License</span>
+    </div>
+  </div>
+</footer>

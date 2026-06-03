@@ -1,0 +1,13 @@
+---
+import CopyButton from "./CopyButton.astro";
+
+const { cmd } = Astro.props;
+---
+
+<div class="my-3 flex w-full items-center justify-between gap-3 rounded-lg border border-border bg-input px-3 py-2 font-mono text-sm text-foreground">
+  <div class="flex min-w-0 items-center gap-2">
+    <span class="shrink-0 select-none text-primary">$</span>
+    <span class="truncate">{cmd}</span>
+  </div>
+  <CopyButton text={cmd} />
+</div>
