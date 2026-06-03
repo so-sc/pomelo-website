@@ -4,10 +4,18 @@ import CopyButton from "./CopyButton.astro";
 const { cmd } = Astro.props;
 ---
 
-<div class="my-3 flex w-full items-center justify-between gap-3 rounded-lg border border-border bg-input px-3 py-2 font-mono text-sm text-foreground">
-  <div class="flex min-w-0 items-center gap-2">
-    <span class="shrink-0 select-none text-primary">$</span>
-    <span class="truncate">{cmd}</span>
+<div class="my-3 overflow-hidden rounded-lg border border-border bg-card">
+  <div class="flex items-center justify-between gap-3 border-b border-border bg-muted px-3 py-2">
+    <div class="flex min-w-0 items-center gap-2">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-muted-foreground" aria-hidden="true">
+        <path d="m4 17 6-6-6-6M12 19h8"></path>
+      </svg>
+      <span class="truncate font-mono text-xs text-muted-foreground">Terminal</span>
+    </div>
+    <CopyButton text={cmd} />
   </div>
-  <CopyButton text={cmd} />
+  <div class="flex min-w-0 items-center gap-2 overflow-x-auto bg-secondary px-4 py-3 font-mono text-sm text-foreground">
+    <span class="shrink-0 select-none text-primary">$</span>
+    <span class="whitespace-nowrap">{cmd}</span>
+  </div>
 </div>

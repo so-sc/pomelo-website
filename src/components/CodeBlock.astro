@@ -1,27 +1,40 @@
 ---
+import CopyButton from "./CopyButton.astro";
+
 const { code, language = "bash", filename } = Astro.props;
+const trimmedCode = String(code).trim();
+const isTerminal = filename === "terminal" || language === "bash";
 ---
 
 <div class="my-5 overflow-hidden rounded-lg border border-border">
   {filename && (
-    <div class="flex items-center gap-2 border-b border-border bg-muted px-4 py-2">
-      <svg
-        width="13"
-        height="13"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="text-muted-foreground"
-        aria-hidden="true"
-      >
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-        <polyline points="14 2 14 8 20 8"></polyline>
-      </svg>
-      <span class="font-mono text-xs text-muted-foreground">{filename}</span>
+    <div class="flex items-center justify-between gap-3 border-b border-border bg-muted px-4 py-2">
+      <div class="flex min-w-0 items-center gap-2">
+        <svg
+          width="13"
+          height="13"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="shrink-0 text-muted-foreground"
+          aria-hidden="true"
+        >
+          {isTerminal ? (
+            <path d="m4 17 6-6-6-6M12 19h8"></path>
+          ) : (
+            <>
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </>
+          )}
+        </svg>
+        <span class="truncate font-mono text-xs text-muted-foreground">{isTerminal ? "Terminal" : filename}</span>
+      </div>
+      {isTerminal && <CopyButton text={trimmedCode} label="Copy terminal command" />}
     </div>
   )}
-  <pre class="overflow-x-auto bg-secondary px-5 py-4 text-sm leading-relaxed text-foreground"><code class={`language-${language} font-mono`}>{String(code).trim()}</code></pre>
+  <pre class="overflow-x-auto bg-secondary px-5 py-4 text-sm leading-relaxed text-foreground"><code class={`language-${language} font-mono`}>{trimmedCode}</code></pre>
 </div>
