@@ -2,8 +2,8 @@
 import Logo from "@/components/ui/Logo.astro";
 ---
 
-<footer class="w-full border-t border-border bg-card/50 px-4 py-10">
-  <div class="mx-auto max-w-[90rem]">
+<footer class="w-full border-t border-border bg-card/50 py-10">
+  <div class="footer-inner">
     <div class="grid grid-cols-1 gap-8 border-b border-border pb-8 md:grid-cols-4">
 
       <div class="flex flex-col gap-3">
@@ -29,7 +29,6 @@ import Logo from "@/components/ui/Logo.astro";
         <ul class="space-y-2 text-xs">
           <li><a href="https://github.com/so-sc/pomelo" target="_blank" rel="noopener noreferrer" class="text-muted-foreground transition-colors hover:text-foreground">GitHub</a></li>
           <li><a href="https://github.com/so-sc/pomelo/issues" target="_blank" rel="noopener noreferrer" class="text-muted-foreground transition-colors hover:text-foreground">Issues</a></li>
-          <li><a href="https://github.com/so-sc/pomelo/discussions" target="_blank" rel="noopener noreferrer" class="text-muted-foreground transition-colors hover:text-foreground">Discussions</a></li>
           <li><a href="https://github.com/so-sc/pomelo/graphs/contributors" target="_blank" rel="noopener noreferrer" class="text-muted-foreground transition-colors hover:text-foreground">Contributors</a></li>
         </ul>
       </div>
@@ -51,3 +50,24 @@ import Logo from "@/components/ui/Logo.astro";
     </div>
   </div>
 </footer>
+
+<style>
+  .footer-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  @media (max-width: 860px) {
+    .footer-inner {
+      padding-left: 1.25rem !important;
+      padding-right: 1.25rem !important;
+    }
+  }
+  @media (max-width: 600px) {
+    .footer-inner {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+  }
+</style>

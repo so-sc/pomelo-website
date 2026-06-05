@@ -5,7 +5,7 @@ import SearchTrigger from "@/components/SearchTrigger.astro";
 ---
 
 <header class="sticky top-0 z-50 h-14 w-full border-b border-border bg-navbar-background/95 backdrop-blur-md">
-  <div class="mx-auto flex h-full max-w-[90rem] items-center justify-between px-4">
+  <div class="header-inner flex h-full items-center justify-between">
     <div class="flex min-w-0 items-center gap-6">
       <Logo />
 
@@ -72,3 +72,25 @@ import SearchTrigger from "@/components/SearchTrigger.astro";
     });
   }
 </script>
+
+<style>
+  .header-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  @media (max-width: 860px) {
+    .header-inner {
+      padding-left: 1.25rem !important;
+      padding-right: 1.25rem !important;
+    }
+  }
+  @media (max-width: 600px) {
+    .header-inner {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+  }
+</style>
