@@ -8,15 +8,9 @@ const steps = [
   },
   {
     num: "02",
-    title: "Edit your environment",
-    desc: "Open .env and set your Judge0 API key, database password, and the domain you'll serve Pomelo on.",
-    cmd: "nano .env",
-  },
-  {
-    num: "03",
-    title: "Start the stack",
-    desc: "Compose brings up the API server, judge worker, React frontend, and PostgreSQL. Visit port 3000 when healthy.",
-    cmd: "docker compose up -d",
+    title: "Start Pomelo",
+    desc: "The CLI brings up all services, including the API server, judge worker, and frontend. Open Web UI when healthy.",
+    cmd: "pomelo start",
   },
 ];
 ---
@@ -25,7 +19,7 @@ const steps = [
   <div class="section-inner">
     <div class="section-header">
       <h2 class="section-title">Up and running in under five minutes.</h2>
-      <p class="section-sub">Three commands. Requires Linux with Docker. No account or API key needed to get started.</p>
+      <p class="section-sub">Two commands. Requires Linux. No account or API key needed to get started.</p>
     </div>
 
     <ol class="qs-list">
@@ -175,7 +169,7 @@ const steps = [
     .qs-cmd code { white-space: normal; word-break: break-all; }
     .qs-cmd { display: flex; width: 100%; box-sizing: border-box; }
   }
-  @media (max-width: 520px) {
+  @media (max-width: 600px) {
     .section-inner { padding: 1.75rem 1rem; }
     .qs-list { margin-left: 0.75rem; }
     .qs-item { gap: 1rem; padding-left: 1.25rem; }

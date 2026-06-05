@@ -13,7 +13,7 @@ const { installCommand } = Astro.props;
         <span class="badge badge-judge">Judge0 powered</span>
         <span class="badge badge-linux">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.504 0c-.155 0-.315.008-.48.021C7.27.218 3.883 3.858 3.883 8.271c0 .467.043.949.134 1.439-.726 1.124-1.117 2.46-1.117 3.809 0 2.121.878 4.076 2.356 5.486l-.001.023c0 1.04.827 1.885 1.886 1.885.473 0 .907-.179 1.236-.474 1.042.508 2.174.79 3.351.79.76 0 1.499-.116 2.19-.326.36.187.772.295 1.21.295 1.043 0 1.956-.612 2.393-1.501.547.224 1.118.338 1.693.338 2.479 0 4.5-2.008 4.5-4.474 0-1.337-.591-2.591-1.6-3.463.049-.296.073-.597.073-.9 0-4.407-3.633-8.001-8.063-8.001z"/></svg>
-          Linux only
+          Linux
         </span>
       </div>
 
@@ -124,7 +124,6 @@ const { installCommand } = Astro.props;
 
 <style>
   .hero {
-    padding: 2rem 1.5rem 2.5rem;
     border-bottom: 1px solid hsl(var(--border));
     overflow-x: clip;
   }
@@ -132,6 +131,7 @@ const { installCommand } = Astro.props;
   .hero-inner {
     max-width: 72rem;
     margin: 0 auto;
+    padding: 2rem 1.5rem 2.5rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
@@ -280,6 +280,7 @@ const { installCommand } = Astro.props;
   }
 
   .copy-btn {
+    margin-left: auto;
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -431,13 +432,12 @@ const { installCommand } = Astro.props;
   .metric-val   { font-family: var(--font-mono, monospace); font-size: 0.75rem; font-weight: 600; color: hsl(var(--foreground)); }
 
   @media (max-width: 860px) {
-    .hero { padding: 1.75rem 1.25rem 2rem; }
-    .hero-inner { grid-template-columns: 1fr; gap: 1.75rem; align-items: start; }
+    .hero-inner { padding: 1.75rem 1.25rem 2rem; grid-template-columns: 1fr; gap: 1.75rem; align-items: start; }
     .hero-sub { max-width: 100%; }
   }
 
   @media (max-width: 600px) {
-    .hero { padding: 1.5rem 1rem 1.75rem; }
+    .hero-inner { padding: 1.5rem 1rem 1.75rem; }
     .hero-heading { font-size: clamp(1.55rem, 6.5vw, 2rem); }
     .hero-sub { font-size: 0.875rem; }
     .trust-list { gap: 0.4rem; }
