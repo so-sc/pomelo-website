@@ -1,0 +1,44 @@
+---
+title: User Management
+section: Admin UI
+sectionOrder: 3
+order: 4
+---
+import Note from '@/components/ui/Note.astro';
+
+## User Management
+
+The **Users** page in the Admin UI is for managing accounts that access the Pomelo application. Users are stored in MongoDB and split into two tabs: **Administrators** and **Regular Users**.
+
+### Creating an Account
+
+1.  Click the **Add Account** button in the top-right corner.
+2.  Fill in the form fields:
+
+    | Field | Description |
+    | :--- | :--- |
+    | **Name** | Display name for the account (optional, max 100 characters). |
+    | **Email** | Must be a valid email address (required). |
+    | **Password** | Minimum 6 characters, maximum 72 (required). |
+    | **Role** | Select either **Admin** or **User**. |
+
+3.  Click **Create Account**.
+
+Admin accounts created here can log into the main Pomelo App and access the `/admin` dashboard, where tests and questions are managed.
+
+### Managing Existing Accounts
+
+The user table displays all accounts for the selected role tab. For each account you can:
+
+| Action | Description |
+| :--- | :--- |
+| **Change the role** | Use the inline dropdown to promote a user to Admin or demote an Admin to a regular User. |
+| **Delete the account** | Click the trash icon and confirm. This action is permanent. |
+
+### Pagination
+
+When you have many accounts, the table automatically paginates. Use the **Previous** and **Next** buttons to navigate between pages.
+
+<Note>
+  <p>You must create at least one Admin account here before you can access the App's admin dashboard. Regular users can self-register through the App's sign-up page.</p>
+</Note>

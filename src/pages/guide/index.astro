@@ -1,0 +1,22 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import GuideSidebar from "@/components/guide/GuideSidebar.astro";
+import GuideContent from "@/components/guide/GuideContent.astro";
+import GuideTOC from "@/components/guide/GuideTOC.astro";
+import Footer from "@/components/Footer.astro";
+---
+
+<Layout>
+  <div class="flex min-h-screen flex-col">
+    <Header />
+    <div
+      class="mx-auto flex w-full max-w-360 flex-1 items-start gap-4 px-4"
+    >
+      <GuideSidebar />
+      <GuideContent />
+      <GuideTOC />
+    </div>
+    <Footer />
+  </div>
+</Layout>

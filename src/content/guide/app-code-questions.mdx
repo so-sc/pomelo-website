@@ -1,0 +1,50 @@
+---
+title: Adding Code Questions
+section: Pomelo App
+sectionOrder: 4
+order: 5
+---
+import Note from '@/components/ui/Note.astro';
+
+## Adding Code Questions
+
+Code questions allow candidates to write and submit programs that are automatically compiled, executed, and graded against predefined test cases using the Judge0 engine.
+
+### Step-by-Step
+
+1.  Open the test's **Questions** section.
+2.  Click **Add Question** and select **Code Question**.
+3.  Fill in the problem details:
+
+| Field | Description |
+| :--- | :--- |
+| **Problem Statement** | A detailed description of the algorithm or logic the candidate must implement. Be specific about input format, output format, and expected behavior. |
+| **Constraints** | Define input limits (e.g., 1 ≤ N ≤ 10⁵). This helps candidates gauge the expected time complexity. |
+| **Languages** | Select which programming languages candidates are allowed to use (e.g., Python, C++, JavaScript). |
+| **Points** | Assign a score value for the question. |
+
+### Adding Test Cases
+
+Test cases are the backbone of automated grading. For each test case:
+
+1.  Click **Add Test Case**.
+2.  Provide the **Standard Input** (the exact input your program will receive via stdin).
+3.  Provide the **Standard Output** (the expected output the program must produce).
+4.  Set the visibility:
+
+    | Visibility | Description |
+    | :--- | :--- |
+    | **Public** | Visible to candidates as a sample/example. They can use this to verify their approach. |
+    | **Hidden** | Used only for final grading. Candidates never see the input or expected output. |
+
+5.  Click **Save Question** when you are done adding all test cases.
+
+### Best Practices
+
+*   Include at least 1–2 public test cases so candidates can validate their solution before submitting.
+*   Add edge cases as hidden test cases (empty input, maximum constraints, boundary values) to ensure solutions are robust.
+*   Write the problem statement as if the candidate has never seen the problem before. Include input/output format specifications and a worked example.
+
+<Note>
+  <p>Code questions are graded by Judge0. Make sure the Judge0 engine is running (check the Admin UI Dashboard) before candidates begin their attempts.</p>
+</Note>

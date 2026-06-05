@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+
+const guide = await getCollection('guide');
+const sortedGuide = guide.sort((a, b) => {
+  if (a.data.sectionOrder !== b.data.sectionOrder) {
+    return a.data.sectionOrder - b.data.sectionOrder;
+  }
+  return a.data.order - b.data.order;
+});
+
+interface Heading {
+  id: string;
+  label: string;
+}
+
+const headings: Heading[] = sortedGuide.map(doc => ({
+  id: doc.id,
+  label: doc.data.title
+}));
+---
+
+<aside class="sticky top-14 hidden h-[calc(100vh-3.5rem)] w-48 shrink-0 overflow-y-auto py-6 pl-6 lg:block">
+  <p class="mb-2 text-xs font-semibold uppercase tracking-wider text-foreground">
+    On this page
+  </p>
+  <nav aria-label="Table of contents">
+    <ul class="space-y-1.5 text-xs">
+      {headings.map((heading) => (
+        <li>
+          <a href={`#${heading.id}`} class="block text-muted-foreground transition-colors hover:text-foreground">
+            {heading.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</aside>

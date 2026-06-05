@@ -1,0 +1,44 @@
+---
+title: Setup & Configuration
+section: Admin UI
+sectionOrder: 3
+order: 2
+---
+import Note from '@/components/ui/Note.astro';
+
+## Setup & Configuration
+
+The **Setup** page is where you configure the core infrastructure services that power Pomelo. Navigate to it from the Admin UI sidebar.
+
+### MongoDB
+
+Choose how Pomelo connects to its primary database:
+
+| Option | Description |
+| :--- | :--- |
+| **Self-hosted** | Uses the bundled MongoDB container that ships with Pomelo. This is the recommended option for most deployments (no external database is needed). |
+| **External MongoDB** | Connect to your own MongoDB Atlas cluster or a separately managed instance. When selected, provide the full connection URI (e.g., `mongodb+srv://user:pass@cluster.example.com/pomelo`). |
+
+If you choose External, you can click **Test Connection** to verify read/write access before saving. If the test fails, the save is aborted so you do not accidentally break your deployment.
+
+### Judge0 Engine
+
+Configure the code evaluation backend:
+
+| Option | Description |
+| :--- | :--- |
+| **Self-hosted** | Runs Judge0 server and worker containers locally. This requires Docker privileged mode and is the default. |
+| **External Judge0** | Point Pomelo at a separately hosted Judge0 instance by providing its URL (e.g., `https://judge0.example.com:2358`). |
+
+### Domain & Protocol
+
+Set the public-facing address for your Pomelo instance:
+
+| Configuration | Description |
+| :--- | :--- |
+| **Domain Name** | The hostname where Pomelo will be accessible (e.g., `contests.example.com`). Use `localhost` for local development. |
+| **Protocol** | Choose between HTTP (no SSL, suitable for local or internal use) and HTTPS (Caddy will automatically provision SSL certificates via Let's Encrypt). |
+
+<Note>
+  <p>Every time you save a section on this page, the required containers are automatically restarted to apply the changes. You do not need to manually restart.</p>
+</Note>

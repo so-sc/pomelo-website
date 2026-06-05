@@ -1,0 +1,32 @@
+---
+title: Environment Variables
+section: Admin UI
+sectionOrder: 3
+order: 3
+---
+import Note from '@/components/ui/Note.astro';
+
+## Environment Variables
+
+The **Environment** tab gives you direct access to Pomelo's raw environment configuration. Instead of manually editing `.env` files on the server, you can update values through this interface.
+
+### What You Can Configure
+
+| Variable Category | Examples | Purpose |
+| :--- | :--- | :--- |
+| **Caddy Ports** | HTTP port (80), HTTPS port (443) | Change these if Pomelo runs behind another reverse proxy or if the default ports are occupied. |
+| **Admin CLI Port** | Daemon communication port (8462) | Modify the port the Pomelo daemon uses to communicate with the CLI and Admin UI. |
+| **Judge Configuration** | API keys, memory limits, execution timeouts | Fine-tune Judge0 parameters for code evaluation: adjust memory caps, CPU time limits, and API credentials. |
+| **Database** | `MONGODB_URI` | Override the MongoDB connection string directly. |
+| **Application** | `AUTH_SECRET`, `DOMAIN`, `PROTOCOL` | Core application secrets and routing configuration. |
+
+### Workflow
+
+1.  Open the **Environment** tab in the Admin UI sidebar.
+2.  Locate the variable you want to change.
+3.  Edit the value inline and click **Save**.
+4.  Return to the **Dashboard** and click **Restart** to apply the changes.
+
+<Note>
+  <p>Changes to environment variables require a service restart to take effect. The Dashboard will show a prompt when a restart is needed.</p>
+</Note>

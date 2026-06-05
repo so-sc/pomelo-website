@@ -1,9 +1,9 @@
 /* ───────────────────────────────────────────────
-   Docs Prose — scoped markdown styles
-   Apply via <div class="docs-prose"> wrapper.
+   Prose — scoped markdown styles
+   Apply via <div class="prose"> wrapper.
    ─────────────────────────────────────────────── */
 
-.docs-prose {
+.prose {
   /* ── Headings ─────────────────────────────── */
 
   & h1 {

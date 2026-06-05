@@ -1,10 +1,10 @@
 ---
-import { getCollection, render } from 'astro:content';
-import SectionLabel from '@/components/ui/SectionLabel.astro';
-import '@/styles/prose.css';
+import { getCollection, render } from "astro:content";
+import SectionLabel from "@/components/ui/SectionLabel.astro";
+import "@/styles/prose.css";
 
-const docs = await getCollection('docs');
-const sortedDocs = docs.sort((a, b) => {
+const guide = await getCollection("guide");
+const sortedGuide = guide.sort((a, b) => {
   if (a.data.sectionOrder !== b.data.sectionOrder) {
     return a.data.sectionOrder - b.data.sectionOrder;
   }
@@ -18,13 +18,15 @@ const renderedSections = new Set<string>();
 <main class="min-w-0 flex-1 py-6 pl-0 md:pl-8">
   <div class="prose max-w-[75ch]">
     {
-      sortedDocs.map(async (doc) => {
+      sortedGuide.map(async (doc) => {
         const { Content } = await render(doc);
         const showSectionLabel = !renderedSections.has(doc.data.section);
         if (showSectionLabel) renderedSections.add(doc.data.section);
         return (
           <section id={doc.id} class="mb-12 scroll-mt-20">
-            {showSectionLabel && <SectionLabel>{doc.data.section}</SectionLabel>}
+            {showSectionLabel && (
+              <SectionLabel>{doc.data.section}</SectionLabel>
+            )}
             <Content />
           </section>
         );

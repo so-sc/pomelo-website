@@ -1,0 +1,41 @@
+---
+title: Logs & Debugging
+section: Admin UI
+sectionOrder: 3
+order: 5
+---
+import CmdBar from '@/components/ui/CmdBar.astro';
+import Note from '@/components/ui/Note.astro';
+
+## Logs & Debugging
+
+The **Logs** tab provides a real-time, streaming view of your container output. It is the fastest way to diagnose service failures without dropping into a terminal.
+
+### When to Use Logs
+
+*   A service fails to start after running `pomelo start` or clicking **Start** on the Dashboard.
+*   A candidate's code submission fails unexpectedly or times out.
+*   You see container status badges showing "Exited" on the Dashboard and want to know why.
+
+### Filtering by Container
+
+You can scope the log stream to a specific container to reduce noise:
+
+| Container | What It Shows |
+| :--- | :--- |
+| `server` | Express API logs: authentication, contest operations, submission handling. |
+| `client` | Next.js frontend logs: page renders, server-side API calls. |
+| `judge0-server` | Judge0 core server: code submission intake and result dispatch. |
+| `judge0-workers` | Judge0 workers: actual code compilation and execution. |
+| `mongo` | MongoDB database logs. |
+| `caddy` | Reverse proxy and SSL certificate logs. |
+
+### CLI Alternative
+
+You can also tail logs from the terminal without opening the Admin UI:
+
+<CmdBar cmd="pomelo logs server" />
+
+<Note>
+  <p>If a container is not running, its logs will be empty. Start the services first, then return to the Logs tab.</p>
+</Note>

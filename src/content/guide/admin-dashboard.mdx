@@ -1,0 +1,54 @@
+---
+title: Dashboard
+section: Admin UI
+sectionOrder: 3
+order: 1
+---
+import CmdBar from '@/components/ui/CmdBar.astro';
+import Note from '@/components/ui/Note.astro';
+
+## Dashboard
+
+The Admin UI is Pomelo's dedicated interface for infrastructure management. Open it with:
+
+<CmdBar cmd="pomelo ui" />
+
+### System Status
+
+The **Dashboard** is the first thing you see when you enter the Admin UI. It provides a bird's-eye view of your deployment across three key metrics:
+
+| Metric | What It Shows |
+| :--- | :--- |
+| **Docker** | Whether Docker is available and ready on the host machine. |
+| **Containers** | A count of running containers versus total containers (e.g., `6 / 8`). |
+| **Database** | The current storage footprint of your MongoDB instance. |
+
+### Quick Actions
+
+Below the status indicators, you will find action buttons that mirror the CLI:
+
+| Action | Description |
+| :--- | :--- |
+| **Start** | Launches all services. |
+| **Stop** | Gracefully shuts down every container. |
+| **Restart** | Stops then starts the entire stack. |
+| **Refresh** | Re-fetches the latest status from the daemon. |
+
+These are identical to running `pomelo start`, `pomelo stop`, and `pomelo restart` in the terminal.
+
+### Container List
+
+A live table of all containers is displayed at the bottom of the Dashboard. Each row shows the container name and a status badge:
+
+| Status | Description |
+| :--- | :--- |
+| **Running** | The container is healthy and operational. |
+| **Exited** | The container has stopped. |
+
+### Storage Overview
+
+At the bottom, you will see a summary of disk usage split into **Database**, **Uploads**, and **Backups**. Use this to monitor growth over time.
+
+<Note>
+  <p>If Docker shows as "Offline", ensure Docker Desktop (or the Docker daemon) is running on the host machine before starting Pomelo services.</p>
+</Note>

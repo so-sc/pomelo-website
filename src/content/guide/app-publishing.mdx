@@ -1,0 +1,47 @@
+---
+title: Scheduling & Joining
+section: Pomelo App
+sectionOrder: 4
+order: 6
+---
+import Note from '@/components/ui/Note.astro';
+
+## Scheduling & Joining Tests
+
+Once your test is populated with questions, configure its start and end times to schedule it for candidates.
+
+### Scheduling a Test
+
+1.  Navigate to the test management page (`/admin/tests/[id]`).
+2.  Click **Edit** to configure the **Start Time** and **End Time**.
+3.  Ensure the times are correct. A unique **join code** is generated automatically when the test is created.
+
+Share this join code (or the direct test link) with your candidates through email, a messaging platform, or a classroom portal. Candidates can use the code to join, but the test will only open when the scheduled start time is reached.
+
+### Candidate Journey
+
+From the candidate's perspective:
+
+1.  **Navigate** to the Pomelo App in their browser.
+2.  **Log in** or **Sign up** for a candidate account.
+3.  **Go to the Join page** at `/join`.
+4.  **Enter the join code** provided by the instructor.
+5.  **Begin the attempt**: they are redirected to the `/attempt` interface where the timer starts and questions are presented.
+
+### During the Attempt
+
+*   The countdown timer is visible at all times.
+*   Candidates can navigate between questions freely.
+*   MCQ answers are saved immediately on selection.
+*   Code submissions are sent to Judge0 for evaluation. Candidates see results for public test cases in real time.
+*   When time expires, the attempt is automatically submitted.
+
+### After the Test
+
+*   Admins can view the **Leaderboard** for live rankings.
+*   The **Submissions** tab shows every candidate's individual answers.
+*   The **Results** page provides final scores and analytics.
+
+<Note>
+  <p>Once a test's start time has passed and candidates have joined, avoid editing questions. If you need to make corrections, communicate them to candidates directly.</p>
+</Note>

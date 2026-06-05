@@ -2,6 +2,16 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
+const guideCollection = defineCollection({
+  loader: glob({ pattern: "**/*.mdx", base: "./src/content/guide" }),
+  schema: z.object({
+    title: z.string(),
+    section: z.string(),
+    sectionOrder: z.number(),
+    order: z.number(),
+  }),
+});
+
 const docsCollection = defineCollection({
   loader: glob({ pattern: "**/*.mdx", base: "./src/content/docs" }),
   schema: z.object({
@@ -14,4 +24,5 @@ const docsCollection = defineCollection({
 
 export const collections = {
   'docs': docsCollection,
+  'guide': guideCollection,
 };

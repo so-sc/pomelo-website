@@ -1,0 +1,43 @@
+---
+title: Creating a Test
+section: Pomelo App
+sectionOrder: 4
+order: 3
+---
+import Note from '@/components/ui/Note.astro';
+
+## Creating a Test
+
+Tests are the core unit of assessment in Pomelo. Each test is a timed container for questions that candidates work through.
+
+### Step-by-Step
+
+1.  Navigate to the **Admin Dashboard** in the main app (`/admin`).
+2.  Click the **Create Test** button.
+3.  Fill in the foundational details:
+
+| Field | Description |
+| :--- | :--- |
+| **Title** | The name of the assessment as candidates will see it. |
+| **Description** | Instructions, rules, or context for the candidates. |
+| **Start Time** | The date and time when the test opens for candidates. |
+| **End Time** | The date and time when the test closes. |
+| **Duration** | The time limit allowed for a candidate's individual attempt once they start (e.g., `01:30` for 90 minutes). |
+
+4.  Click **Save**. You will be redirected to the test management page where you can add questions.
+
+### Test Management
+
+Once created, the test management page at `/admin/tests/[id]` gives you access to:
+
+| Tab / Section | Description |
+| :--- | :--- |
+| **Questions** | Add, edit, or remove MCQ and Code questions. |
+| **Edit** | Update the title, description, or duration. |
+| **Leaderboard** | View real-time rankings once the test is live. |
+| **Submissions** | Review individual candidate submissions. |
+| **Results** | Access final scores and analytics after the test ends. |
+
+<Note>
+  <p>A test is scheduled based on its Start Time and End Time. Candidates can only join and view the test while it is open.</p>
+</Note>

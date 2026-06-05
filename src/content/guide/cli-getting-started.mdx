@@ -1,0 +1,46 @@
+---
+title: Getting Started
+section: Pomelo CLI
+sectionOrder: 2
+order: 1
+---
+import CmdBar from '@/components/ui/CmdBar.astro';
+import Note from '@/components/ui/Note.astro';
+
+## Getting Started with the CLI
+
+The `pomelo` command is your primary tool for managing a Pomelo deployment from the terminal. It is installed automatically during setup and symlinked to `/usr/local/bin/pomelo`.
+
+### Starting Pomelo
+
+After installation, launch the entire platform (Docker containers, databases, the web server, and the Judge0 code evaluation engine) with a single command:
+
+<CmdBar cmd="pomelo start" />
+
+The CLI streams progress to your terminal as each service comes online. Once complete, your Pomelo instance is ready for use.
+
+### Checking Status
+
+To verify that all services are healthy and running:
+
+<CmdBar cmd="pomelo status" />
+
+This prints the state of each Docker container (running, stopped, or errored) along with the daemon version.
+
+### Stopping Services
+
+When you are done or need to free system resources:
+
+<CmdBar cmd="pomelo stop" />
+
+All containers are gracefully stopped. Your data is preserved on disk.
+
+### Restarting Services
+
+If you have made configuration changes (for example, updating environment variables or domain settings), apply them by restarting:
+
+<CmdBar cmd="pomelo restart" />
+
+<Note>
+  <p>A restart is required after any environment or setup change. The Admin UI will also remind you when a restart is needed.</p>
+</Note>

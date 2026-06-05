@@ -1,0 +1,39 @@
+---
+title: CLI Reference
+section: Pomelo CLI
+sectionOrder: 2
+order: 2
+---
+import CmdBar from '@/components/ui/CmdBar.astro';
+
+## CLI Command Reference
+
+The full set of commands available through the `pomelo` CLI:
+
+| Command | Description |
+| :--- | :--- |
+| `pomelo start` | Starts all Pomelo backend services (Docker containers, databases, server, client, and Judge0 engine). |
+| `pomelo stop` | Stops all currently running Pomelo services. |
+| `pomelo restart` | Stops then restarts all services. Use this to apply configuration changes. |
+| `pomelo status` | Displays the health and running status of all Pomelo services. |
+| `pomelo logs [service]` | Tails the logs of a specific service. For example, `pomelo logs caddy` or `pomelo logs judge0-server`. |
+| `pomelo ui` | Opens the Admin UI dashboard in your default web browser (port 8462). |
+| `pomelo uninstall` | Safely uninstalls Pomelo and removes its associated containers, volumes, and systemd service. |
+
+### Viewing Logs
+
+You can tail logs for any individual service by name:
+
+<CmdBar cmd="pomelo logs caddy" />
+
+<CmdBar cmd="pomelo logs judge0-server" />
+
+This is useful for debugging startup failures, network issues, or unexpected submission errors without opening the Admin UI.
+
+### Opening the Admin UI
+
+Instead of remembering the port number, use the built-in shortcut:
+
+<CmdBar cmd="pomelo ui" />
+
+This opens `http://localhost:8462` (or your configured Admin CLI port) in your default browser.
