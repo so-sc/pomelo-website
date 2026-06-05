@@ -1,0 +1,557 @@
+---
+interface Props { installCommand: string; }
+const { installCommand } = Astro.props;
+---
+
+<section class="hero">
+  <div class="hero-inner">
+
+    <div class="hero-text">
+      <div class="badges">
+    
+        <span class="badge badge-oss">GPL-3.0</span>
+        <span class="badge badge-judge">Judge0 powered</span>
+        <span class="badge badge-linux">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.504 0c-.155 0-.315.008-.48.021C7.27.218 3.883 3.858 3.883 8.271c0 .467.043.949.134 1.439-.726 1.124-1.117 2.46-1.117 3.809 0 2.121.878 4.076 2.356 5.486l-.001.023c0 1.04.827 1.885 1.886 1.885.473 0 .907-.179 1.236-.474 1.042.508 2.174.79 3.351.79.76 0 1.499-.116 2.19-.326.36.187.772.295 1.21.295 1.043 0 1.956-.612 2.393-1.501.547.224 1.118.338 1.693.338 2.479 0 4.5-2.008 4.5-4.474 0-1.337-.591-2.591-1.6-3.463.049-.296.073-.597.073-.9 0-4.407-3.633-8.001-8.063-8.001z"/></svg>
+          Linux only
+        </span>
+      </div>
+
+      <h1 class="hero-heading">
+        Self-hosted competitive programming platform.
+      </h1>
+
+      <p class="hero-sub">
+        Run your own contest platform in minutes. Pomelo handles submission
+        routing, sandboxed evaluation via Judge0, live scoreboards, and
+        multi-language support with no vendor lock-in and full source access.
+      </p>
+
+      <ul class="trust-list" aria-label="Key facts">
+        <li><span class="trust-dot"></span>Docker Compose: one command to start everything</li>
+        <li><span class="trust-dot"></span>C, C++, Python, Java, Go &amp; 20+ languages via Judge0</li>
+        <li><span class="trust-dot"></span>Isolated sandboxes: untrusted code never touches your host</li>
+        <li><span class="trust-dot"></span>GPL-3.0: inspect, fork, and self-host forever</li>
+      </ul>
+
+      <div class="hero-actions">
+        <a href="/docs" class="btn-primary">Read the Docs</a>
+        <a href="https://github.com/so-sc/pomelo" target="_blank" rel="noopener noreferrer" class="btn-ghost">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+
+      <div class="install-row">
+        <code class="install-cmd" id="install-command">{installCommand}</code>
+        <button id="copy-btn" class="copy-btn" aria-label="Copy install command">
+          <svg id="copy-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+          <svg id="check-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="eval-panel" aria-label="Submission evaluation lifecycle">
+      <div class="eval-header">
+        <span class="eval-label">Submission #1042</span>
+        <span class="eval-lang">C++ · GCC 12</span>
+      </div>
+
+     
+
+      <div class="pipeline" id="pipeline">
+        <div class="stage" data-stage="0">
+          <div class="stage-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <div class="stage-info">
+            <span class="stage-name">Submitted</span>
+            <span class="stage-meta">Queued for evaluation</span>
+          </div>
+          <div class="stage-status"></div>
+        </div>
+
+        <div class="stage-connector"><div class="connector-line"></div></div>
+
+        <div class="stage" data-stage="1">
+          <div class="stage-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div class="stage-info">
+            <span class="stage-name">Compiling</span>
+            <span class="stage-meta">g++ -O2 -std=c++17</span>
+          </div>
+          <div class="stage-status"></div>
+        </div>
+
+        <div class="stage-connector"><div class="connector-line"></div></div>
+
+        <div class="stage" data-stage="2">
+          <div class="stage-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          </div>
+          <div class="stage-info">
+            <span class="stage-name">Running Tests</span>
+            <span class="stage-meta" id="test-meta">0 / 5 passed</span>
+          </div>
+          <div class="stage-status"></div>
+        </div>
+
+        <div class="stage-connector"><div class="connector-line"></div></div>
+
+        <div class="stage" data-stage="3">
+          <div class="stage-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="stage-info">
+            <span class="stage-name">Accepted</span>
+            <span class="stage-meta" id="verdict-meta">waiting...</span>
+          </div>
+          <div class="stage-status"></div>
+        </div>
+      </div>
+
+      <div class="eval-footer">
+        <div class="metric"><span class="metric-label">Memory</span><span class="metric-val" id="mem-val">-</span></div>
+        <div class="metric"><span class="metric-label">Time</span><span class="metric-val" id="time-val">-</span></div>
+        <div class="metric"><span class="metric-label">Language</span><span class="metric-val">C++17</span></div>
+        <div class="metric"><span class="metric-label">Score</span><span class="metric-val" id="score-val">-</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: 2rem 1.5rem 2.5rem;
+    border-bottom: 1px solid hsl(var(--border));
+    overflow-x: clip;
+  }
+
+  .hero-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: stretch;
+  }
+
+  .hero-text, .eval-panel { min-width: 0; }
+
+  /* ── badges ── */
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid hsl(var(--border));
+    background: hsl(var(--muted) / 0.5);
+    color: hsl(var(--muted-foreground));
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+  }
+  .badge-gh:hover { background: hsl(var(--muted)); color: hsl(var(--foreground)); }
+  .badge-oss { color: hsl(var(--primary)); border-color: hsl(var(--primary) / 0.35); background: hsl(var(--primary) / 0.08); }
+  .badge-judge { color: hsl(var(--muted-foreground)); }
+  .badge-linux { color: hsl(220 70% 65%); border-color: hsl(220 70% 50% / 0.3); background: hsl(220 70% 50% / 0.08); }
+
+  /* ── heading ── */
+  .hero-heading {
+    font-size: clamp(1.8rem, 3.5vw, 2.7rem);
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -0.03em;
+    color: hsl(var(--foreground));
+    margin: 0 0 1rem;
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: hsl(var(--muted-foreground));
+    margin: 0 0 1.25rem;
+    max-width: 34rem;
+    word-break: break-word;
+  }
+
+  /* ── trust list ── */
+  .trust-list {
+    list-style: none;
+    margin: 0 0 1.75rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .trust-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    font-size: 0.8rem;
+    color: hsl(var(--muted-foreground));
+    word-break: break-word;
+  }
+
+  .trust-dot { margin-top: 0.35rem; }
+
+  .trust-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: hsl(var(--primary));
+    flex-shrink: 0;
+  }
+
+  /* ── CTAs ── */
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    height: 2.375rem;
+    padding: 0 1.15rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.88; }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    height: 2.375rem;
+    padding: 0 1.15rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid hsl(var(--border));
+    background: transparent;
+    color: hsl(var(--foreground));
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .btn-ghost:hover { background: hsl(var(--muted)); }
+
+  /* ── install bar ── */
+  .install-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid hsl(var(--border));
+    border-radius: 0.5rem;
+    background: hsl(var(--muted) / 0.4);
+    padding: 0.4rem 0.4rem 0.4rem 0.85rem;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .install-cmd {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.75rem;
+    color: hsl(var(--muted-foreground));
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: all;
+  }
+
+  .copy-btn {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.65rem;
+    height: 1.65rem;
+    border-radius: 0.3rem;
+    border: none;
+    background: transparent;
+    color: hsl(var(--muted-foreground));
+    cursor: pointer;
+    transition: background 0.12s, color 0.12s;
+  }
+  .copy-btn:hover { background: hsl(var(--muted)); color: hsl(var(--foreground)); }
+
+  /* ── eval panel ── */
+  .eval-panel {
+    border: 1px solid hsl(var(--border));
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: hsl(var(--card));
+    box-shadow: 0 4px 24px -4px hsl(var(--primary) / 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .eval-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid hsl(var(--border));
+    background: hsl(var(--muted) / 0.5);
+  }
+
+  .eval-label {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: hsl(var(--foreground));
+  }
+
+  .eval-lang {
+    font-size: 0.68rem;
+    color: hsl(var(--muted-foreground));
+    background: hsl(var(--muted));
+    border: 1px solid hsl(var(--border));
+    border-radius: 999px;
+    padding: 0.15rem 0.55rem;
+  }
+
+  /* ── code block ── */
+  .code-block {
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid hsl(var(--border));
+    background: hsl(var(--background));
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    line-height: 1.55;
+    overflow-x: auto;
+  }
+
+  .code-line { white-space: pre; color: hsl(var(--foreground)); }
+  .code-line.pl  { padding-left: 1.25rem; }
+  .code-line.pl2 { padding-left: 2.5rem; }
+  .kw  { color: hsl(167 100% 42%); }
+  .fn  { color: hsl(210 80% 65%); }
+  .str { color: hsl(35 90% 60%); }
+
+  /* ── pipeline ── */
+  .pipeline {
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-evenly;
+  }
+
+  .stage {
+    display: grid;
+    grid-template-columns: 1.75rem 1fr 1.25rem;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.5rem;
+    border-radius: 0.4rem;
+    transition: background 0.2s;
+    opacity: 0.35;
+  }
+
+  .stage.active  { opacity: 1; background: hsl(var(--muted) / 0.5); }
+  .stage.done    { opacity: 1; }
+  .stage.success { opacity: 1; }
+
+  .stage-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 0.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid hsl(var(--border));
+    background: hsl(var(--muted) / 0.4);
+    color: hsl(var(--muted-foreground));
+    transition: border-color 0.3s, background 0.3s, color 0.3s;
+    flex-shrink: 0;
+  }
+
+  .stage.active  .stage-icon { border-color: hsl(var(--primary) / 0.6); color: hsl(var(--primary)); background: hsl(var(--primary) / 0.08); }
+  .stage.done    .stage-icon { border-color: hsl(var(--border)); color: hsl(var(--muted-foreground)); }
+  .stage.success .stage-icon { border-color: hsl(167 80% 40% / 0.5); color: hsl(167 100% 42%); background: hsl(167 80% 40% / 0.08); }
+
+  .stage-info { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+  .stage-name { font-size: 0.8rem; font-weight: 600; color: hsl(var(--foreground)); }
+  .stage-meta { font-size: 0.68rem; color: hsl(var(--muted-foreground)); font-family: var(--font-mono, monospace); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .stage-status { display: flex; align-items: center; justify-content: flex-end; }
+
+  /* connector */
+  .stage-connector { padding: 0 0 0 1.375rem; height: 0.55rem; display: flex; align-items: center; }
+  .connector-line { width: 1px; height: 100%; background: hsl(var(--border)); margin: 0 auto; transition: background 0.3s; }
+  .connector-line.lit { background: hsl(var(--primary) / 0.4); }
+
+  /* spinner / check */
+  .spin { display: inline-block; width: 13px; height: 13px; border: 1.5px solid hsl(var(--primary) / 0.3); border-top-color: hsl(var(--primary)); border-radius: 50%; animation: spin 0.7s linear infinite; }
+  .check-dot { display: inline-block; width: 13px; height: 13px; border-radius: 50%; background: hsl(167 80% 40% / 0.15); border: 1.5px solid hsl(167 80% 40%); position: relative; }
+  .check-dot::after { content: ''; position: absolute; left: 2px; top: 1px; width: 5px; height: 3px; border-left: 1.5px solid hsl(167 100% 42%); border-bottom: 1.5px solid hsl(167 100% 42%); transform: rotate(-45deg) translateY(1px); }
+  .muted-dot { display: inline-block; width: 13px; height: 13px; border-radius: 50%; background: hsl(var(--muted)); border: 1.5px solid hsl(var(--border)); }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── eval footer ── */
+  .eval-footer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid hsl(var(--border));
+    background: hsl(var(--muted) / 0.3);
+  }
+
+  .metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.45rem 0.75rem;
+    border-right: 1px solid hsl(var(--border));
+  }
+  .metric:last-child { border-right: none; }
+
+  .metric-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.07em; color: hsl(var(--muted-foreground)); }
+  .metric-val   { font-family: var(--font-mono, monospace); font-size: 0.75rem; font-weight: 600; color: hsl(var(--foreground)); }
+
+  @media (max-width: 860px) {
+    .hero { padding: 1.75rem 1.25rem 2rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 1.75rem; align-items: start; }
+    .hero-sub { max-width: 100%; }
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 1.5rem 1rem 1.75rem; }
+    .hero-heading { font-size: clamp(1.55rem, 6.5vw, 2rem); }
+    .hero-sub { font-size: 0.875rem; }
+    .trust-list { gap: 0.4rem; }
+    .trust-list li { font-size: 0.78rem; }
+    .hero-actions { gap: 0.6rem; }
+    .btn-primary, .btn-ghost { height: 2.25rem; font-size: 0.825rem; padding: 0 1rem; }
+    .eval-footer { grid-template-columns: repeat(2, 1fr); }
+    .metric:nth-child(2) { border-right: none; }
+    .metric:nth-child(3) { border-top: 1px solid hsl(var(--border)); }
+    .metric:nth-child(4) { border-top: 1px solid hsl(var(--border)); border-right: none; }
+  }
+
+  @media (max-width: 400px) {
+    .badges { gap: 0.35rem; }
+    .badge { font-size: 0.65rem; padding: 0.2rem 0.5rem; }
+    .hero-actions { flex-direction: column; }
+    .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+  }
+</style>
+
+<script>
+  // ── copy button ──
+  const copyBtn  = document.getElementById("copy-btn");
+  const copyIcon = document.getElementById("copy-icon");
+  const checkIcon = document.getElementById("check-icon");
+  const cmdEl    = document.getElementById("install-command");
+
+  copyBtn?.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(cmdEl?.textContent ?? "");
+      copyIcon?.classList.add("hidden");
+      checkIcon?.classList.remove("hidden");
+      setTimeout(() => { copyIcon?.classList.remove("hidden"); checkIcon?.classList.add("hidden"); }, 2000);
+    } catch {}
+  });
+
+  // ── submission lifecycle animation ──
+  const stages = document.querySelectorAll<HTMLElement>("#pipeline .stage");
+  const connectors = document.querySelectorAll<HTMLElement>("#pipeline .connector-line");
+  const testMeta   = document.getElementById("test-meta")!;
+  const verdictMeta = document.getElementById("verdict-meta")!;
+  const memVal     = document.getElementById("mem-val")!;
+  const timeVal    = document.getElementById("time-val")!;
+  const scoreVal   = document.getElementById("score-val")!;
+
+  const sleep = (ms: number) => new Promise<void>(r => setTimeout(r, ms));
+
+  function setStatus(el: HTMLElement, type: "spin" | "check" | "muted" | "none") {
+    const s = el.querySelector(".stage-status")!;
+    s.innerHTML =
+      type === "spin"  ? `<span class="spin"></span>` :
+      type === "check" ? `<span class="check-dot"></span>` :
+      type === "muted" ? `<span class="muted-dot"></span>` : "";
+  }
+
+  async function activate(i: number) {
+    stages[i].classList.remove("done", "success");
+    stages[i].classList.add("active");
+    setStatus(stages[i], "spin");
+  }
+
+  async function complete(i: number, success = false) {
+    stages[i].classList.remove("active");
+    stages[i].classList.add(success ? "success" : "done");
+    setStatus(stages[i], success ? "check" : "muted");
+    if (connectors[i]) connectors[i].classList.add("lit");
+  }
+
+  async function run() {
+    await sleep(600);
+
+    // Stage 0 – Submitted
+    await activate(0);
+    await sleep(700);
+    await complete(0);
+    await sleep(200);
+
+    // Stage 1 – Compiling
+    await activate(1);
+    await sleep(1100);
+    await complete(1);
+    await sleep(200);
+
+    // Stage 2 – Running tests
+    await activate(2);
+    for (let t = 1; t <= 5; t++) {
+      await sleep(380);
+      testMeta.textContent = `${t} / 5 passed`;
+    }
+    await complete(2);
+    await sleep(200);
+
+    // Stage 3 – Accepted
+    await activate(3);
+    await sleep(400);
+    verdictMeta.textContent = "5 / 5 tests passed";
+    memVal.textContent  = "3.2 MB";
+    timeVal.textContent = "12 ms";
+    scoreVal.textContent = "100 / 100";
+    stages[3].classList.remove("active");
+    stages[3].classList.add("success");
+    setStatus(stages[3], "check");
+
+    // Replay after pause
+    await sleep(4500);
+    stages.forEach(s => { s.className = "stage"; setStatus(s, "none"); });
+    connectors.forEach(c => c.classList.remove("lit"));
+    testMeta.textContent   = "0 / 5 passed";
+    verdictMeta.textContent = "waiting...";
+    memVal.textContent  = "-";
+    timeVal.textContent = "-";
+    scoreVal.textContent = "-";
+    run();
+  }
+
+  run();
+</script>
