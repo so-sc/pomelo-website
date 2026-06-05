@@ -11,6 +11,15 @@ import Note from '@/components/ui/Note.astro';
 
 Follow these steps to set up the Pomelo workspace on your local machine.
 
+### Prerequisites
+
+The Pomelo stack requires specific system tools to run locally and build. Make sure the following are installed:
+
+- **[Node.js (`node`)](https://nodejs.org/)**: Required for the Next.js frontend and Express backend.
+- **[Bun (`bun`)](https://bun.sh/)**: Used specifically to compile the CLI and Daemon binaries.
+- **[pnpm](https://pnpm.io/)**: The strict package manager used across the monorepo workspace.
+- **[Docker & Docker Compose](https://www.docker.com/)**: Required for the database and Judge0 execution environment.
+
 ### 1. Clone the repository
 
 Clone the repository to your local machine:

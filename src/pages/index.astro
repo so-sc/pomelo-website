@@ -2,12 +2,9 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import { getInstallCommand } from "@/lib/config";
 
-const domain = import.meta.env.PUBLIC_DOMAIN;
-
-if (import.meta.env.PROD && !domain) {
-  throw new Error("PUBLIC_DOMAIN environment variable is required for production builds!");
-}
+const installCommand = getInstallCommand();
 ---
 
 <Layout>
@@ -45,7 +42,7 @@ if (import.meta.env.PROD && !domain) {
         </div>
 
         <div class="mt-8 flex w-full max-w-fit items-center justify-between rounded-lg border border-border bg-muted/30 p-2 pl-4 shadow-sm backdrop-blur-sm">
-          <code class="text-sm font-mono text-muted-foreground truncate select-all" id="install-command">curl -fsSL {domain}/install.sh | sudo bash</code>
+          <code class="text-sm font-mono text-muted-foreground truncate select-all" id="install-command">{installCommand}</code>
           <button
             id="copy-install-cmd"
             class="ml-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"

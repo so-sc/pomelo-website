@@ -6,19 +6,24 @@ order: 3
 ---
 import CmdBar from '@/components/ui/CmdBar.astro';
 import Note from '@/components/ui/Note.astro';
+import { getInstallCommand } from '@/lib/config';
 
 ## Installation
 
-Clone the repository and install all workspace dependencies using `pnpm`.
+Run the following command to automatically install and set up Pomelo:
 
-### Clone the repository
+<CmdBar cmd={getInstallCommand()} />
 
-<CmdBar cmd="git clone https://github.com/so-sc/pomelo && cd pomelo" />
+### During Installation
 
-### Install dependencies
+When you run the installation script, it will prompt you to select which version of Pomelo to install (defaults to the latest release).
 
-<CmdBar cmd="pnpm install" />
+### Next Steps
 
-<Note>
-  The repo uses `pnpm@10.33.0` as the package manager. Running npm install or yarn in this workspace is not supported.
-</Note>
+Once the installation finishes and the Pomelo daemon is running, you can start the entire platform with:
+
+<CmdBar cmd="pomelo start" />
+
+To access the built-in administrator interface to manage your instance, simply run:
+
+<CmdBar cmd="pomelo ui" />
