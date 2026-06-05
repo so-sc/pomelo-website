@@ -9,6 +9,7 @@
     "lint": "astro check"
   },
   "dependencies": {
+    "@astrojs/mdx": "^6.0.2",
     "astro": "^6.4.4"
   },
   "devDependencies": {

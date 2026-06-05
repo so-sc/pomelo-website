@@ -1,0 +1,40 @@
+---
+title: Docker Setup
+section: Configuration
+order: 6
+---
+import CmdBar from '@/components/ui/CmdBar.astro';
+import CodeBlock from '@/components/ui/CodeBlock.astro';
+import ServiceCard from '@/components/ui/ServiceCard.astro';
+
+## Docker Setup
+
+Pomelo includes Docker Compose definitions in `docker/app/` and `docker/judge0/`. Use the following command to start the backing services for local development.
+
+### Start the Docker dev stack
+
+<CodeBlock filename="terminal" language="bash" code={`docker compose --project-name pomelo --env-file .env \\
+  -f docker/app/docker-compose.dev.yaml \\
+  -f docker/judge0/docker-compose.dev.yaml \\
+  --project-directory . up mongo judge0-server judge0-workers seed -d`} />
+
+### Services
+
+<div class="space-y-2">
+  <ServiceCard name="mongo" description="MongoDB database for contest and user data." port="27017" />
+  <ServiceCard name="server" description="Express API for auth, contests, and submissions." port="8080" />
+  <ServiceCard name="client" description="Participant-facing web app." port="3000" />
+  <ServiceCard name="seed" description="Seeds MongoDB with initial data, then exits." />
+  <ServiceCard name="judge0-server" description="Judge0 core server for code execution." port="2358" />
+  <ServiceCard name="judge0-workers" description="Judge0 worker processes." />
+  <ServiceCard name="judge0-db" description="PostgreSQL for Judge0 internal state." />
+  <ServiceCard name="judge0-redis" description="Redis for Judge0 job queuing." />
+</div>
+
+### Stop containers
+
+<CmdBar cmd="docker compose --project-name pomelo down" />
+
+### Remove volumes
+
+<CmdBar cmd="docker compose --project-name pomelo down -v" />

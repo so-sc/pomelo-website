@@ -1,14 +1,18 @@
 ---
-const headings = [
-  { id: "introduction", label: "Introduction" },
-  { id: "prerequisites", label: "Prerequisites" },
-  { id: "installation", label: "Installation" },
-  { id: "quickstart", label: "Quick Start" },
-  { id: "environment", label: "Environment Variables" },
-  { id: "docker", label: "Docker Setup" },
-  { id: "admin", label: "Bun CLI" },
-  { id: "troubleshooting", label: "Common Issues" },
-];
+import { getCollection } from 'astro:content';
+
+const docs = await getCollection('docs');
+const sortedDocs = docs.sort((a, b) => a.data.order - b.data.order);
+
+interface Heading {
+  id: string;
+  label: string;
+}
+
+const headings: Heading[] = sortedDocs.map(doc => ({
+  id: doc.id,
+  label: doc.data.title
+}));
 ---
 
 <aside class="sticky top-14 hidden h-[calc(100vh-3.5rem)] w-48 shrink-0 overflow-y-auto py-6 pl-6 lg:block">

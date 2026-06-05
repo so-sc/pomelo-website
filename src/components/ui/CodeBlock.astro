@@ -1,5 +1,5 @@
 ---
-import CopyButton from "./CopyButton.astro";
+import CopyButton from "@/components/ui/CopyButton.astro";
 
 const { code, language = "bash", filename } = Astro.props;
 const trimmedCode = String(code).trim();
@@ -36,5 +36,5 @@ const isTerminal = filename === "terminal" || language === "bash";
       {isTerminal && <CopyButton text={trimmedCode} label="Copy terminal command" />}
     </div>
   )}
-  <pre class="overflow-x-auto bg-secondary px-5 py-4 text-sm leading-relaxed text-foreground"><code class={`language-${language} font-mono`}>{trimmedCode}</code></pre>
+  <pre class="m-0! border-0! rounded-none! overflow-x-auto bg-secondary px-5 py-4 text-sm leading-relaxed text-foreground"><code class={`language-${language} font-mono`}>{trimmedCode}</code></pre>
 </div>

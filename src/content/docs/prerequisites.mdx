@@ -1,0 +1,27 @@
+---
+title: Prerequisites
+section: Getting Started
+order: 2
+---
+import CmdBar from '@/components/ui/CmdBar.astro';
+
+## Prerequisites
+
+Before setting up Pomelo, make sure the following tools are available on your system.
+
+| Tool | Version | Required for |
+| --- | --- | --- |
+| Node.js | LTS | Client and server packages |
+| pnpm | 10.0.0 or newer | Workspace package manager |
+| Docker | latest | Running the full dev stack |
+| Docker Compose | v2 or newer | Orchestrating services |
+| Git | latest | Cloning the repository |
+| Bun | latest | Admin CLI and daemon tooling |
+
+### Install Bun
+
+The admin CLI and daemon in `admin/` require Bun.
+
+<CmdBar cmd="curl -fsSL https://bun.sh/install | bash" />
+
+After installing, reload your shell and verify with `bun --version`.

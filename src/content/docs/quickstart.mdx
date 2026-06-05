@@ -1,0 +1,46 @@
+---
+title: Quick Start
+section: Getting Started
+order: 4
+---
+import CmdBar from '@/components/ui/CmdBar.astro';
+
+## Quick Start
+
+After installing dependencies and setting up your `.env` file, start the development stack.
+
+### Start all services
+
+<CmdBar cmd="pnpm dev" />
+
+This runs the root dev script, builds the code-gen package, then starts all workspace packages through Turborepo.
+
+### Available scripts
+
+<CmdBar cmd="pnpm dev" />
+
+Build all packages in the workspace:
+
+<CmdBar cmd="pnpm build" />
+
+Run tests across all packages:
+
+<CmdBar cmd="pnpm test" />
+
+Lint all packages:
+
+<CmdBar cmd="pnpm lint" />
+
+Remove build artifacts and node_modules:
+
+<CmdBar cmd="pnpm clean" />
+
+### Verify the stack
+
+Once running, open these endpoints to confirm each service is up:
+
+| Service | URL |
+| --- | --- |
+| Frontend | [http://localhost:3000](http://localhost:3000) |
+| Backend | [http://localhost:8080](http://localhost:8080) |
+| Judge0 | [http://localhost:2358](http://localhost:2358) |

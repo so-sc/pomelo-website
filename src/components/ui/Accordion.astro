@@ -1,0 +1,37 @@
+---
+interface Props {
+  category: string;
+  title: string;
+}
+
+const { category, title } = Astro.props;
+---
+
+<details class="group rounded-lg border border-border bg-card">
+  <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-3 text-left sm:px-5">
+    <span class="min-w-0">
+      <span class="block font-mono text-[11px] font-semibold uppercase tracking-wider text-primary">{category}</span>
+      <span class="mt-1 block text-sm font-semibold leading-5 text-foreground">{title}</span>
+    </span>
+    <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-border bg-muted text-muted-foreground transition-colors group-open:text-primary">
+      <svg class="transition-transform group-open:rotate-180" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </span>
+  </summary>
+  <div class="accordion-body space-y-3 border-t border-border px-4 py-4 sm:px-5">
+    <slot />
+  </div>
+</details>
+
+<style>
+  .accordion-body :global(p) {
+    border-radius: 0.375rem;
+    background-color: hsl(var(--muted) / 0.4);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: hsl(var(--muted-foreground));
+    margin-bottom: 0;
+  }
+</style>

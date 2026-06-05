@@ -1,0 +1,23 @@
+---
+title: Installation
+section: Getting Started
+order: 3
+---
+import CmdBar from '@/components/ui/CmdBar.astro';
+import Note from '@/components/ui/Note.astro';
+
+## Installation
+
+Clone the repository and install all workspace dependencies using `pnpm`.
+
+### Clone the repository
+
+<CmdBar cmd="git clone https://github.com/so-sc/pomelo && cd pomelo" />
+
+### Install dependencies
+
+<CmdBar cmd="pnpm install" />
+
+<Note>
+  The repo uses `pnpm@10.33.0` as the package manager. Running npm install or yarn in this workspace is not supported.
+</Note>

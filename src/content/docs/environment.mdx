@@ -1,0 +1,53 @@
+---
+title: Environment Variables
+section: Configuration
+order: 5
+---
+import CmdBar from '@/components/ui/CmdBar.astro';
+import CodeBlock from '@/components/ui/CodeBlock.astro';
+import Note from '@/components/ui/Note.astro';
+
+## Environment Variables
+
+The repository ships with a single `.env.example` at the root. Copy it to `.env` before running anything.
+
+<CmdBar cmd="cp .env.example .env" />
+
+<CodeBlock
+  filename=".env.example"
+  language="bash"
+  code={`# Shared secrets
+AUTH_SECRET=xyz
+
+# Backend server config
+PORT=8080
+MONGODB_URI=mongodb://localhost:27017/pomelo
+JUDGE0_URL=http://judge0-server:2358
+
+# Client config
+DOMAIN=localhost:3000
+PROTOCOL=http
+BACKEND_URL=http://localhost:8080
+
+# Judge0
+POSTGRES_PASSWORD=judge0postgres123
+REDIS_PASSWORD=judge0redis123`}
+/>
+
+### Variable reference
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| AUTH_SECRET | required | Long random secret used by auth middleware. Required. |
+| PORT | 8080 | Port the Express backend listens on. |
+| MONGODB_URI | mongodb://localhost:27017/pomelo | MongoDB connection string used by the backend and admin tools. |
+| JUDGE0_URL | http://judge0-server:2358 | URL for the Judge0 code execution service. |
+| DOMAIN | localhost:3000 | Frontend domain used by the client. |
+| PROTOCOL | http | Protocol for the frontend app. |
+| BACKEND_URL | http://localhost:8080 | URL used by server-side code to call the backend. |
+| POSTGRES_PASSWORD | required | PostgreSQL password for Judge0 containers. |
+| REDIS_PASSWORD | required | Redis password for Judge0 containers. |
+
+<Note>
+  There are no separate server or client env templates. The root `.env` is the single source of truth for the workspace.
+</Note>

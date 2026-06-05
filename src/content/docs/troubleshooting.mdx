@@ -1,0 +1,44 @@
+---
+title: Common Issues
+section: Troubleshooting
+order: 8
+---
+import Accordion from '@/components/ui/Accordion.astro';
+
+## Common Issues
+
+Open the issue that matches what you are seeing, then compare the guidance with your local setup.
+
+<div class="space-y-2">
+  <Accordion category="Toolchain" title="pnpm install fails">
+    <p>Confirm pnpm 10.0.0 or newer is installed.</p>
+    <p>Confirm Node.js is installed.</p>
+    <p>Confirm Git is available in PATH.</p>
+  </Accordion>
+
+  <Accordion category="Environment" title="pnpm dev fails">
+    <p>Confirm .env exists and matches .env.example.</p>
+    <p>Confirm AUTH_SECRET is set to a non-empty value.</p>
+    <p>Confirm MONGODB_URI points to a running MongoDB instance.</p>
+    <p>Confirm JUDGE0_URL points to a running Judge0 server.</p>
+  </Accordion>
+
+  <Accordion category="Containers" title="Docker Compose fails">
+    <p>Confirm Docker and Docker Compose v2 are installed.</p>
+    <p>Confirm .env exists in the repository root.</p>
+    <p>Confirm POSTGRES_PASSWORD and REDIS_PASSWORD are set.</p>
+    <p>Run the Docker Compose command from the repo root directory.</p>
+  </Accordion>
+
+  <Accordion category="Database" title="Backend cannot connect to MongoDB">
+    <p>Verify MONGODB_URI is correct and reachable.</p>
+    <p>Confirm the mongo container or service is running.</p>
+    <p>Check logs with docker logs pomelo-mongo-1.</p>
+  </Accordion>
+
+  <Accordion category="Judge0" title="Judge0 jobs fail or time out">
+    <p>Verify JUDGE0_URL is correct.</p>
+    <p>Confirm judge0-server and judge0-workers are running.</p>
+    <p>Confirm judge0-db and judge0-redis are healthy.</p>
+  </Accordion>
+</div>

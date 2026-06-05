@@ -1,0 +1,17 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  port?: string;
+}
+
+const { name, description, port } = Astro.props;
+---
+
+<div class="flex items-start gap-4 rounded-lg border border-border bg-card px-4 py-3">
+  <code class="mt-0.5 shrink-0 rounded bg-primary/10 px-2 py-0.5 font-mono text-xs font-semibold text-primary">{name}</code>
+  <div class="min-w-0 flex-1">
+    <p class="text-xs text-muted-foreground mb-0!">{description}</p>
+  </div>
+  {port && <span class="shrink-0 font-mono text-xs text-muted-foreground" >:{port}</span>}
+</div>
