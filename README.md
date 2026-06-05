@@ -35,7 +35,7 @@ To run the documentation site locally:
 ## Quick Links
 
 - [Pomelo Main Repository](https://github.com/so-sc/pomelo)
-- [Documentation & Landing Page](https://pomelo.dev)
+- [Documentation & Landing Page](https://pomelo.sosc.org.in)
 - [Report an Issue](https://github.com/so-sc/pomelo/issues)
 - [Releases & Changelog](https://github.com/so-sc/pomelo/releases)
 
