@@ -1,7 +1,7 @@
 ---
 import Logo from "@/components/ui/Logo.astro";
 import ThemeToggle from "@/components/ui/ThemeToggle.astro";
-import DocsSearch from "@/components/docs/DocsSearch.astro";
+import SearchTrigger from "@/components/SearchTrigger.astro";
 ---
 
 <header class="sticky top-0 z-50 h-14 w-full border-b border-border bg-navbar-background/95 backdrop-blur-md">
@@ -26,7 +26,7 @@ import DocsSearch from "@/components/docs/DocsSearch.astro";
     </div>
 
     <div class="flex items-center gap-3.5">
-      <DocsSearch />
+      <SearchTrigger />
 
       <div class="flex items-center gap-1.5 border-l border-border pl-3.5">
         <ThemeToggle />

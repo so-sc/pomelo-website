@@ -1,41 +1,43 @@
 ---
 import { getCollection } from "astro:content";
 
-const guide = await getCollection("guide");
-const searchData = guide.map((doc) => ({
+const docs = await getCollection("docs");
+const guides = await getCollection("guide");
+
+const docsSearchData = docs.map((doc) => ({
+  type: "docs",
   title: doc.data.title,
   group: doc.data.section,
-  href: `#${doc.id}`,
+  href: `/docs#${doc.id}`,
   keywords: (doc.body || "").toLowerCase(),
   description: (doc.body || "").replace(/<[^>]+>/g, "").replace(/[#*[\]()>\-`]/g, "").replace(/\n/g, " ").slice(0, 60).trim() + "..."
 }));
+
+const guidesSearchData = guides.map((doc) => ({
+  type: "guide",
+  title: doc.data.title,
+  group: doc.data.section,
+  href: `/guide#${doc.id}`,
+  keywords: (doc.body || "").toLowerCase(),
+  description: (doc.body || "").replace(/<[^>]+>/g, "").replace(/[#*[\]()>\-`]/g, "").replace(/\n/g, " ").slice(0, 60).trim() + "..."
+}));
+
+const searchData = [...docsSearchData, ...guidesSearchData];
 ---
 
-<button
-  id="guide-search-trigger"
-  type="button"
-  class="hidden h-8 min-w-0 items-center gap-2 rounded-md border border-border bg-muted/40 px-2.5 text-xs text-muted-foreground transition-colors hover:bg-muted sm:flex"
-  aria-label="Open documentation search"
+<div
+  id="universal-search-modal"
+  data-search-items={JSON.stringify(searchData)}
+  class="fixed inset-0 z-[100] hidden h-screen w-screen bg-background/80 px-4 py-24 backdrop-blur-md overflow-y-auto"
 >
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 opacity-70" aria-hidden="true">
-    <circle cx="11" cy="11" r="8"></circle>
-    <path d="m21 21-4.3-4.3"></path>
-  </svg>
-  <span class="max-w-44 truncate pr-3">Search documentation...</span>
-  <kbd class="pointer-events-none hidden h-4.5 select-none items-center gap-0.5 rounded border border-border/50 bg-background px-1.5 font-mono text-[9px] font-semibold text-muted-foreground md:inline-flex">
-    Ctrl K
-  </kbd>
-</button>
-
-<div id="guide-search-modal" data-search-items={JSON.stringify(searchData)} class="fixed inset-0 z-[100] hidden bg-background/80 px-4 py-24 backdrop-blur-md">
   <div class="mx-auto max-w-[44rem] overflow-hidden rounded-lg border border-border bg-popover shadow-lg">
     <div class="border-b border-border p-3">
       <div class="mb-3 flex items-center justify-between gap-3">
         <div class="flex items-center gap-2">
-          <span class="rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary">Guide</span>
+          <span class="rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary">Search</span>
           <span class="rounded-md bg-muted px-2 py-1 text-xs font-medium text-muted-foreground">Pomelo</span>
         </div>
-        <button id="guide-search-close" type="button" class="rounded-md border border-border px-2 py-1 font-mono text-xs text-muted-foreground hover:bg-muted" aria-label="Close search">
+        <button id="universal-search-close" type="button" class="rounded-md border border-border px-2 py-1 font-mono text-xs text-muted-foreground hover:bg-muted" aria-label="Close search">
           Esc
         </button>
       </div>
@@ -45,29 +47,39 @@ const searchData = guide.map((doc) => ({
           <path d="m21 21-4.3-4.3"></path>
         </svg>
         <input
-          id="guide-search"
+          id="universal-search-input"
           type="search"
           autocomplete="off"
-          placeholder="What are you searching for?"
-          aria-label="Search documentation"
+          placeholder="Search documentation and guides..."
+          aria-label="Search documentation and guides"
           class="h-8 w-full bg-transparent text-base text-foreground outline-none placeholder:text-muted-foreground"
         />
       </label>
     </div>
-    <div id="guide-search-results" class="max-h-[28rem] overflow-y-auto p-2" aria-label="Search results"></div>
+    <div id="universal-search-results" class="max-h-[28rem] overflow-y-auto p-2" aria-label="Search results"></div>
   </div>
 </div>
 
 <script>
   import Fuse from "fuse.js";
 
-  const searchTrigger = document.querySelector<HTMLButtonElement>("#guide-search-trigger");
-  const searchInput = document.querySelector<HTMLInputElement>("#guide-search");
-  const searchResults = document.querySelector<HTMLElement>("#guide-search-results");
-  const searchModal = document.querySelector<HTMLElement>("#guide-search-modal");
-  const searchClose = document.querySelector<HTMLButtonElement>("#guide-search-close");
+  const searchTrigger = document.querySelector<HTMLButtonElement>("#universal-search-trigger");
+  const searchInput = document.querySelector<HTMLInputElement>("#universal-search-input");
+  const searchResults = document.querySelector<HTMLElement>("#universal-search-results");
+  const searchModal = document.querySelector<HTMLElement>("#universal-search-modal");
+  const searchClose = document.querySelector<HTMLButtonElement>("#universal-search-close");
   const rawData = searchModal?.dataset.searchItems;
-  const searchItems: { title: string; group: string; href: string; keywords: string; description: string }[] = rawData ? JSON.parse(rawData) : [];
+  
+  interface SearchItem {
+    type: "docs" | "guide";
+    title: string;
+    group: string;
+    href: string;
+    keywords: string;
+    description: string;
+  }
+  
+  const searchItems: SearchItem[] = rawData ? JSON.parse(rawData) : [];
 
   const fuse = new Fuse(searchItems, {
     keys: [
@@ -76,8 +88,8 @@ const searchData = guide.map((doc) => ({
       { name: "description", weight: 1.5 },
       { name: "keywords", weight: 1 }
     ],
-    threshold: 0.4, // Allows for slight typos but preserves strictness
-    ignoreLocation: true // Matches anywhere in the document
+    threshold: 0.4,
+    ignoreLocation: true
   });
 
   function openSearch() {
@@ -94,7 +106,7 @@ const searchData = guide.map((doc) => ({
   }
 
   function goToResult(href: string) {
-    window.location.hash = href;
+    window.location.href = href;
     closeSearch();
   }
 
@@ -102,7 +114,7 @@ const searchData = guide.map((doc) => ({
     if (!searchResults) return;
 
     const normalized = query.trim();
-    let matches;
+    let matches: SearchItem[];
 
     if (normalized) {
       matches = fuse.search(normalized).map(result => result.item).slice(0, 6);
@@ -115,7 +127,7 @@ const searchData = guide.map((doc) => ({
     if (!matches.length) {
       const empty = document.createElement("div");
       empty.className = "px-4 py-6 text-sm text-muted-foreground";
-      empty.textContent = "No matching guide sections.";
+      empty.textContent = "No matching results.";
       searchResults.append(empty);
       return;
     }
@@ -124,6 +136,12 @@ const searchData = guide.map((doc) => ({
       const button = document.createElement("button");
       button.type = "button";
       button.className = "flex w-full items-start gap-3 rounded-md px-3 py-3 text-left hover:bg-muted";
+      
+      const badgeText = item.type === "docs" ? "Docs" : "Guide";
+      const badgeClass = item.type === "docs" 
+        ? "bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20" 
+        : "bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20";
+
       button.innerHTML = `
         <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border text-muted-foreground">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -131,8 +149,11 @@ const searchData = guide.map((doc) => ({
             <polyline points="14 2 14 8 20 8"></polyline>
           </svg>
         </span>
-        <span class="min-w-0">
-          <span class="block text-sm font-semibold text-foreground">${item.title}</span>
+        <span class="min-w-0 flex-1">
+          <span class="flex items-center gap-2">
+            <span class="block text-sm font-semibold text-foreground">${item.title}</span>
+            <span class="rounded px-1.5 py-0.5 text-[10px] font-medium ${badgeClass}">${badgeText}</span>
+          </span>
           <span class="mt-0.5 block text-xs text-muted-foreground">${item.group} - ${item.description}</span>
         </span>`;
       button.addEventListener("click", () => goToResult(item.href));

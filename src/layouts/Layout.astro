@@ -1,5 +1,6 @@
 ---
 import "@/styles/globals.css";
+import SearchModal from "@/components/SearchModal.astro";
 
 const {
   title = "Pomelo Docs",
@@ -33,5 +34,6 @@ const {
   </head>
   <body>
     <slot />
+    <SearchModal />
   </body>
 </html>
