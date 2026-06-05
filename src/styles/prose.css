@@ -90,10 +90,13 @@
   /* ── Tables ───────────────────────────────── */
 
   & table {
+    display: block;
     width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
     font-size: 0.875rem;
     border-collapse: collapse;
-    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 
   /* Responsive table wrapper — added by DocsContent */
