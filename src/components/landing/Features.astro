@@ -1,0 +1,136 @@
+---
+const features = [
+  {
+    title: "Judge0 sandboxed evaluation",
+    desc: "Every submission runs inside an isolated container via Judge0. CPU time, memory, and output are hard-capped. Untrusted code never touches your host OS.",
+    icon: `<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>`,
+  },
+  {
+    title: "20+ programming languages",
+    desc: "C, C++17, Python 3, Java, Go, Rust, Node.js and more, all via Judge0's language runtime ecosystem. No extra configuration needed.",
+    icon: `<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>`,
+  },
+  {
+    title: "Live scoreboard",
+    desc: "Scores update in real time as verdicts come in. Contestants see their rank the moment a submission finishes without refreshing.",
+    icon: `<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>`,
+  },
+  {
+    title: "Docker Compose: one command",
+    desc: "docker compose up -d starts the API server, judge worker, frontend, and PostgreSQL database together. No manual service wiring.",
+    icon: `<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>`,
+  },
+  {
+    title: "Full data ownership",
+    desc: "Your contest data stays on your server. No SaaS middleman, no usage caps, no account required. Export or migrate freely at any time.",
+    icon: `<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>`,
+  },
+  {
+    title: "GPL-3.0: fully open",
+    desc: "Every line of code is auditable on GitHub under so-sc/pomelo. Fork it, patch it, run your own version. No feature paywalls.",
+    icon: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`,
+  },
+];
+---
+
+<section class="features">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2 class="section-title">What Pomelo actually does.</h2>
+      <p class="section-sub">No magic, no vendor lock-in. A well-defined stack you can inspect and run yourself.</p>
+    </div>
+    <div class="features-grid">
+      {features.map(({ title, desc, icon }) => (
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={icon} />
+          </div>
+          <h3>{title}</h3>
+          <p>{desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .features { border-top: 1px solid hsl(var(--border)); }
+
+  .section-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .section-header { margin-bottom: 1.5rem; }
+
+  .section-title {
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: hsl(var(--foreground));
+    margin: 0 0 0.4rem;
+  }
+
+  .section-sub {
+    font-size: 0.85rem;
+    color: hsl(var(--muted-foreground));
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    border: 1px solid hsl(var(--border));
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: hsl(var(--border));
+  }
+
+  .feature-card {
+    background: hsl(var(--card));
+    padding: 1.5rem;
+    transition: background 0.15s;
+  }
+  .feature-card:hover { background: hsl(var(--muted) / 0.5); }
+
+  .feature-icon {
+    width: 2.1rem;
+    height: 2.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid hsl(var(--border));
+    border-radius: 0.375rem;
+    color: hsl(var(--primary));
+    margin-bottom: 0.85rem;
+    background: hsl(var(--muted) / 0.4);
+  }
+
+  .feature-card h3 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: hsl(var(--foreground));
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+
+  .feature-card p {
+    font-size: 0.8rem;
+    line-height: 1.65;
+    color: hsl(var(--muted-foreground));
+    margin: 0;
+  }
+
+  @media (max-width: 860px) {
+    .section-inner { padding: 2rem 1.25rem; }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 520px) {
+    .section-inner { padding: 1.75rem 1rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    .feature-card { padding: 1.25rem; }
+  }
+</style>
