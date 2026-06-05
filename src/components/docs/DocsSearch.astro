@@ -59,6 +59,8 @@ const searchData = docs.map((doc) => ({
 </div>
 
 <script>
+  import Fuse from "fuse.js";
+
   const searchTrigger = document.querySelector<HTMLButtonElement>("#docs-search-trigger");
   const searchInput = document.querySelector<HTMLInputElement>("#docs-search");
   const searchResults = document.querySelector<HTMLElement>("#docs-search-results");
@@ -66,6 +68,17 @@ const searchData = docs.map((doc) => ({
   const searchClose = document.querySelector<HTMLButtonElement>("#docs-search-close");
   const rawData = searchModal?.dataset.searchItems;
   const searchItems: { title: string; group: string; href: string; keywords: string; description: string }[] = rawData ? JSON.parse(rawData) : [];
+
+  const fuse = new Fuse(searchItems, {
+    keys: [
+      { name: "title", weight: 3 },
+      { name: "group", weight: 2 },
+      { name: "description", weight: 1.5 },
+      { name: "keywords", weight: 1 }
+    ],
+    threshold: 0.4, // Allows for slight typos but preserves strictness
+    ignoreLocation: true // Matches anywhere in the document
+  });
 
   function openSearch() {
     searchModal?.classList.remove("hidden");
@@ -88,11 +101,14 @@ const searchData = docs.map((doc) => ({
   function renderResults(query: string) {
     if (!searchResults) return;
 
-    const normalized = query.trim().toLowerCase();
-    const matches = (normalized
-      ? searchItems.filter((item) => `${item.title} ${item.group} ${item.keywords} ${item.description}`.toLowerCase().includes(normalized))
-      : searchItems)
-      .slice(0, 6);
+    const normalized = query.trim();
+    let matches;
+
+    if (normalized) {
+      matches = fuse.search(normalized).map(result => result.item).slice(0, 6);
+    } else {
+      matches = searchItems.slice(0, 6);
+    }
 
     searchResults.innerHTML = "";
 
@@ -133,11 +149,11 @@ const searchData = docs.map((doc) => ({
     }
 
     if (event.key === "Enter") {
-      const query = searchInput.value.trim().toLowerCase();
-      const match = searchItems.find((item) =>
-        `${item.title} ${item.group} ${item.keywords}`.toLowerCase().includes(query),
-      );
-      if (match) goToResult(match.href);
+      const query = searchInput.value.trim();
+      if (query) {
+        const results = fuse.search(query);
+        if (results.length > 0) goToResult(results[0].item.href);
+      }
     }
   });
 
