@@ -4,7 +4,12 @@ import SectionLabel from '@/components/ui/SectionLabel.astro';
 import '@/styles/docs-prose.css';
 
 const docs = await getCollection('docs');
-const sortedDocs = docs.sort((a, b) => a.data.order - b.data.order);
+const sortedDocs = docs.sort((a, b) => {
+  if (a.data.sectionOrder !== b.data.sectionOrder) {
+    return a.data.sectionOrder - b.data.sectionOrder;
+  }
+  return a.data.order - b.data.order;
+});
 
 // Track which sections we've already rendered a label for
 const renderedSections = new Set<string>();

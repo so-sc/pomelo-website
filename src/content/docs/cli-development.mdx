@@ -1,0 +1,34 @@
+---
+title: CLI Development
+section: Admin Tooling
+sectionOrder: 4
+order: 4
+---
+import CmdBar from '@/components/ui/CmdBar.astro';
+import Note from '@/components/ui/Note.astro';
+
+## CLI Development
+
+This section covers how to work on the CLI locally, which is located in the `@pomelo/admin` package.
+
+### Viewing the UI
+
+To start the Vite UI on port 8462:
+
+<CmdBar cmd="pnpm --filter @pomelo/admin dev" />
+
+### Building Binaries
+
+To compile the TypeScript files into `pomelo` and `pomelod` binaries using Bun:
+
+<CmdBar cmd="pnpm --filter @pomelo/admin build:cli" />
+
+### Hot-Swapping (Testing Local CLI)
+
+You can test local changes by running the hot-swap script.
+
+<CmdBar cmd="sudo bash scripts/install-cli.sh" />
+
+<Note>
+  **WARNING**: This script requires `sudo` privileges. You *must* have already installed Pomelo to `/opt/pomelo` using `install.sh` first. This script only copies the newly built binaries over the existing installation and restarts the `pomelod` systemd service.
+</Note>

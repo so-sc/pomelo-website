@@ -1,0 +1,19 @@
+---
+title: Contests API
+section: API Reference
+sectionOrder: 6
+order: 2
+---
+
+## Contests API
+
+Endpoints for managing and participating in contests.
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `POST` | `/api/contests/join` | Validates a join code and returns a `contestId`. |
+| `GET` | `/api/contests/:id` | Fetches public contest landing data. |
+| `POST` | `/api/contests/start` | Initializes an attempt session for a user. |
+| `GET` | `/api/contests/:id/data` | Fetches the active questions and test data for an ongoing attempt. |
+| `POST` | `/api/contests/:id/end` | Submits the final test and locks the session. |
+| `GET` | `/api/contests/:id/leaderboard` | Admin-only route to view ranked scores. |

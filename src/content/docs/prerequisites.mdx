@@ -1,27 +1,15 @@
 ---
 title: Prerequisites
 section: Getting Started
+sectionOrder: 1
 order: 2
 ---
-import CmdBar from '@/components/ui/CmdBar.astro';
 
 ## Prerequisites
 
-Before setting up Pomelo, make sure the following tools are available on your system.
+The Pomelo stack requires specific system tools to run locally and build. Make sure the following are installed:
 
-| Tool | Version | Required for |
-| --- | --- | --- |
-| Node.js | LTS | Client and server packages |
-| pnpm | 10.0.0 or newer | Workspace package manager |
-| Docker | latest | Running the full dev stack |
-| Docker Compose | v2 or newer | Orchestrating services |
-| Git | latest | Cloning the repository |
-| Bun | latest | Admin CLI and daemon tooling |
-
-### Install Bun
-
-The admin CLI and daemon in `admin/` require Bun.
-
-<CmdBar cmd="curl -fsSL https://bun.sh/install | bash" />
-
-After installing, reload your shell and verify with `bun --version`.
+- **[Node.js (`node`)](https://nodejs.org/)**: Required for the Next.js frontend and Express backend.
+- **[Bun (`bun`)](https://bun.sh/)**: Used specifically to compile the CLI and Daemon binaries.
+- **[pnpm](https://pnpm.io/)**: The strict package manager used across the monorepo workspace.
+- **[Docker & Docker Compose](https://www.docker.com/)**: Required for the database and Judge0 execution environment.

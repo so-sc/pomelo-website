@@ -1,0 +1,16 @@
+---
+title: Daemon
+section: Admin Tooling
+sectionOrder: 4
+order: 2
+---
+
+## Daemon
+
+`pomelod` is the background orchestrator daemon for Pomelo. Once installed, it monitors contest states and manages background tasks.
+
+### Systemd Policy
+
+During installation, Pomelo sets up a persistent systemd service for the daemon at `/etc/systemd/system/pomelod.service`. 
+
+This policy ensures that the daemon automatically starts on boot and restarts on failure. If systemd is unavailable on the host system or the installation is not run as root, the daemon will start as a standard non-persistent background process instead.

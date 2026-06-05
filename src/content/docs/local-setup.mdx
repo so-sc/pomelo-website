@@ -1,0 +1,34 @@
+---
+title: Workspace Setup
+section: Dev Setup
+sectionOrder: 2
+order: 1
+---
+import CmdBar from '@/components/ui/CmdBar.astro';
+import Note from '@/components/ui/Note.astro';
+
+## Workspace Setup
+
+Follow these steps to set up the Pomelo workspace on your local machine.
+
+### 1. Clone the repository
+
+Clone the repository to your local machine:
+
+<CmdBar cmd="git clone https://github.com/so-sc/pomelo && cd pomelo" />
+
+### 2. Install workspace dependencies
+
+Run `pnpm install` at the repository root to install all workspace dependencies.
+
+<CmdBar cmd="pnpm install" />
+
+### 3. Start development services
+
+Run `pnpm dev` to start the Next.js frontend, Express API, and local code-gen watchers.
+
+<CmdBar cmd="pnpm dev" />
+
+<Note>
+  **WARNING:** This only starts the Node.js services. The developer *must* also manually start the backing infrastructure containers (MongoDB, Postgres, Redis, Judge0) for the platform to function. See the **Docker Setup** section for instructions.
+</Note>

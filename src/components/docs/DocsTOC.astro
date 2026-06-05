@@ -2,7 +2,12 @@
 import { getCollection } from 'astro:content';
 
 const docs = await getCollection('docs');
-const sortedDocs = docs.sort((a, b) => a.data.order - b.data.order);
+const sortedDocs = docs.sort((a, b) => {
+  if (a.data.sectionOrder !== b.data.sectionOrder) {
+    return a.data.sectionOrder - b.data.sectionOrder;
+  }
+  return a.data.order - b.data.order;
+});
 
 interface Heading {
   id: string;

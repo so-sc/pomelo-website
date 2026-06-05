@@ -1,0 +1,21 @@
+---
+title: Packaging Script
+section: Local Installation
+sectionOrder: 3
+order: 1
+---
+import CmdBar from '@/components/ui/CmdBar.astro';
+
+## Packaging Script
+
+The script at `scripts/package.sh` compiles the workspace into a standalone `build.tar.gz` archive containing only pre-built artifacts.
+
+### Usage
+
+Run the script without arguments to create the default archive:
+
+<CmdBar cmd="./scripts/package.sh" />
+
+Or specify a custom output filename:
+
+<CmdBar cmd="./scripts/package.sh custom-name.tar.gz" />

@@ -1,0 +1,15 @@
+---
+title: Authentication API
+section: API Reference
+sectionOrder: 6
+order: 1
+---
+
+## Authentication API
+
+The Pomelo frontend uses NextAuth for authentication. API routes enforce authentication using the following middleware:
+
+| Middleware | Description |
+| :--- | :--- |
+| `requireAuth()` | Enforces standard authentication for routes. |
+| `isAdmin` | Enforces admin-only access for elevated routes. |

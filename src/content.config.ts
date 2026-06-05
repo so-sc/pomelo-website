@@ -6,6 +6,7 @@ const docsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     section: z.string(),
+    sectionOrder: z.number(),
     order: z.number(),
   }),
 });

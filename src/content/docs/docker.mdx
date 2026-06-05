@@ -1,7 +1,8 @@
 ---
 title: Docker Setup
-section: Configuration
-order: 6
+section: Dev Setup
+sectionOrder: 2
+order: 3
 ---
 import CmdBar from '@/components/ui/CmdBar.astro';
 import CodeBlock from '@/components/ui/CodeBlock.astro';
@@ -16,7 +17,7 @@ Pomelo includes Docker Compose definitions in `docker/app/` and `docker/judge0/`
 <CodeBlock filename="terminal" language="bash" code={`docker compose --project-name pomelo --env-file .env \\
   -f docker/app/docker-compose.dev.yaml \\
   -f docker/judge0/docker-compose.dev.yaml \\
-  --project-directory . up mongo judge0-server judge0-workers seed -d`} />
+  --project-directory . up mongo judge0-server judge0-workers -d`} />
 
 ### Services
 

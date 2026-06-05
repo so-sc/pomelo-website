@@ -1,0 +1,23 @@
+---
+title: Installation Script
+section: Local Installation
+sectionOrder: 3
+order: 2
+---
+import CmdBar from '@/components/ui/CmdBar.astro';
+
+## Installation Script
+
+The script at `scripts/install.sh` deploys Pomelo to a host machine under `/opt/pomelo`.
+
+### Usage
+
+To install from a local tarball:
+
+<CmdBar cmd="sudo bash scripts/install.sh --archive build.tar.gz" />
+
+### Uninstalling
+
+To cleanly remove the installation:
+
+<CmdBar cmd="sudo bash scripts/install.sh --uninstall" />

@@ -1,0 +1,162 @@
+---
+import { getCollection } from "astro:content";
+
+const docs = await getCollection("docs");
+const searchData = docs.map((doc) => ({
+  title: doc.data.title,
+  group: doc.data.section,
+  href: `#${doc.id}`,
+  keywords: (doc.body || "").toLowerCase(),
+  description: (doc.body || "").replace(/<[^>]+>/g, "").replace(/[#*[\]()>\-`]/g, "").replace(/\n/g, " ").slice(0, 60).trim() + "..."
+}));
+---
+
+<button
+  id="docs-search-trigger"
+  type="button"
+  class="hidden h-8 min-w-0 items-center gap-2 rounded-md border border-border bg-muted/40 px-2.5 text-xs text-muted-foreground transition-colors hover:bg-muted sm:flex"
+  aria-label="Open documentation search"
+>
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 opacity-70" aria-hidden="true">
+    <circle cx="11" cy="11" r="8"></circle>
+    <path d="m21 21-4.3-4.3"></path>
+  </svg>
+  <span class="max-w-44 truncate pr-3">Search documentation...</span>
+  <kbd class="pointer-events-none hidden h-4.5 select-none items-center gap-0.5 rounded border border-border/50 bg-background px-1.5 font-mono text-[9px] font-semibold text-muted-foreground md:inline-flex">
+    Ctrl K
+  </kbd>
+</button>
+
+<div id="docs-search-modal" data-search-items={JSON.stringify(searchData)} class="fixed inset-0 z-[100] hidden bg-background/80 px-4 py-24 backdrop-blur-md">
+  <div class="mx-auto max-w-[44rem] overflow-hidden rounded-lg border border-border bg-popover shadow-lg">
+    <div class="border-b border-border p-3">
+      <div class="mb-3 flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <span class="rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary">Docs</span>
+          <span class="rounded-md bg-muted px-2 py-1 text-xs font-medium text-muted-foreground">Pomelo</span>
+        </div>
+        <button id="docs-search-close" type="button" class="rounded-md border border-border px-2 py-1 font-mono text-xs text-muted-foreground hover:bg-muted" aria-label="Close search">
+          Esc
+        </button>
+      </div>
+      <label class="flex items-center gap-3 rounded-md border border-border bg-background px-3 py-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-muted-foreground" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input
+          id="docs-search"
+          type="search"
+          autocomplete="off"
+          placeholder="What are you searching for?"
+          aria-label="Search documentation"
+          class="h-8 w-full bg-transparent text-base text-foreground outline-none placeholder:text-muted-foreground"
+        />
+      </label>
+    </div>
+    <div id="docs-search-results" class="max-h-[28rem] overflow-y-auto p-2" aria-label="Search results"></div>
+  </div>
+</div>
+
+<script>
+  const searchTrigger = document.querySelector<HTMLButtonElement>("#docs-search-trigger");
+  const searchInput = document.querySelector<HTMLInputElement>("#docs-search");
+  const searchResults = document.querySelector<HTMLElement>("#docs-search-results");
+  const searchModal = document.querySelector<HTMLElement>("#docs-search-modal");
+  const searchClose = document.querySelector<HTMLButtonElement>("#docs-search-close");
+  const rawData = searchModal?.dataset.searchItems;
+  const searchItems: { title: string; group: string; href: string; keywords: string; description: string }[] = rawData ? JSON.parse(rawData) : [];
+
+  function openSearch() {
+    searchModal?.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+    renderResults(searchInput?.value ?? "");
+    window.setTimeout(() => searchInput?.focus(), 0);
+  }
+
+  function closeSearch() {
+    searchModal?.classList.add("hidden");
+    document.body.style.overflow = "";
+    if (searchInput) searchInput.value = "";
+  }
+
+  function goToResult(href: string) {
+    window.location.hash = href;
+    closeSearch();
+  }
+
+  function renderResults(query: string) {
+    if (!searchResults) return;
+
+    const normalized = query.trim().toLowerCase();
+    const matches = (normalized
+      ? searchItems.filter((item) => `${item.title} ${item.group} ${item.keywords} ${item.description}`.toLowerCase().includes(normalized))
+      : searchItems)
+      .slice(0, 6);
+
+    searchResults.innerHTML = "";
+
+    if (!matches.length) {
+      const empty = document.createElement("div");
+      empty.className = "px-4 py-6 text-sm text-muted-foreground";
+      empty.textContent = "No matching docs sections.";
+      searchResults.append(empty);
+      return;
+    }
+
+    matches.forEach((item) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "flex w-full items-start gap-3 rounded-md px-3 py-3 text-left hover:bg-muted";
+      button.innerHTML = `
+        <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border text-muted-foreground">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+          </svg>
+        </span>
+        <span class="min-w-0">
+          <span class="block text-sm font-semibold text-foreground">${item.title}</span>
+          <span class="mt-0.5 block text-xs text-muted-foreground">${item.group} - ${item.description}</span>
+        </span>`;
+      button.addEventListener("click", () => goToResult(item.href));
+      searchResults.append(button);
+    });
+  }
+
+  searchTrigger?.addEventListener("click", openSearch);
+  searchClose?.addEventListener("click", closeSearch);
+  searchInput?.addEventListener("input", () => renderResults(searchInput.value));
+  searchInput?.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeSearch();
+    }
+
+    if (event.key === "Enter") {
+      const query = searchInput.value.trim().toLowerCase();
+      const match = searchItems.find((item) =>
+        `${item.title} ${item.group} ${item.keywords}`.toLowerCase().includes(query),
+      );
+      if (match) goToResult(match.href);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+      event.preventDefault();
+      openSearch();
+    }
+
+    if (event.key === "Escape" && !searchModal?.classList.contains("hidden")) {
+      closeSearch();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!searchModal || searchModal.classList.contains("hidden")) return;
+    const target = event.target;
+    if (target === searchModal) {
+      closeSearch();
+    }
+  });
+</script>
