@@ -8,7 +8,7 @@ const { installCommand } = Astro.props;
 
     <div class="hero-text">
       <div class="badges">
-    
+        <span class="badge badge-alpha">Alpha Release</span>
         <span class="badge badge-oss">GPL-3.0</span>
         <span class="badge badge-judge">Judge0 powered</span>
         <span class="badge badge-linux">
@@ -167,6 +167,16 @@ const { installCommand } = Astro.props;
   .badge-oss { color: hsl(var(--primary)); border-color: hsl(var(--primary) / 0.35); background: hsl(var(--primary) / 0.08); }
   .badge-judge { color: hsl(var(--muted-foreground)); }
   .badge-linux { color: hsl(220 70% 65%); border-color: hsl(220 70% 50% / 0.3); background: hsl(220 70% 50% / 0.08); }
+  .badge-alpha {
+    color: hsl(24 95% 45%);
+    border-color: hsl(24 95% 50% / 0.35);
+    background: hsl(24 95% 50% / 0.08);
+  }
+  :global(.dark) .badge-alpha {
+    color: hsl(24 95% 65%);
+    border-color: hsl(24 95% 50% / 0.35);
+    background: hsl(24 95% 50% / 0.08);
+  }
 
   /* ── heading ── */
   .hero-heading {
