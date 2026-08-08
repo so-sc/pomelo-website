@@ -18,17 +18,16 @@ Open the issue that matches what you are seeing, then compare the guidance with 
   </Accordion>
 
   <Accordion category="Environment" title="pnpm dev fails">
-    <p>Confirm .env exists and matches .env.example.</p>
+    <p>Confirm .env exists (`cp .env.example .env`).</p>
+    <p>Confirm Docker desktop/daemon is running so containers can be started automatically.</p>
     <p>Confirm AUTH_SECRET is set to a non-empty value.</p>
-    <p>Confirm MONGODB_URI points to a running MongoDB instance.</p>
-    <p>Confirm JUDGE0_URL points to a running Judge0 server.</p>
   </Accordion>
 
-  <Accordion category="Containers" title="Docker Compose fails">
-    <p>Confirm Docker and Docker Compose v2 are installed.</p>
+  <Accordion category="Containers" title="Docker containers fail to start">
+    <p>Confirm Docker and Docker Compose v2 are installed and running.</p>
     <p>Confirm .env exists in the repository root.</p>
     <p>Confirm POSTGRES_PASSWORD and REDIS_PASSWORD are set.</p>
-    <p>Run the Docker Compose command from the repo root directory.</p>
+    <p>Check container status or run pnpm dev to trigger automated setup.</p>
   </Accordion>
 
   <Accordion category="Database" title="Backend cannot connect to MongoDB">

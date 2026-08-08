@@ -32,12 +32,15 @@ Run `pnpm install` at the repository root to install all workspace dependencies.
 
 <CmdBar cmd="pnpm install" />
 
-### 3. Start development services
+### 3. Set up environment variables
 
-Run `pnpm dev` to start the Next.js frontend, Express API, and local code-gen watchers.
+Copy `.env.example` to `.env`:
+
+<CmdBar cmd="cp .env.example .env" />
+
+### 4. Start development mode
+
+Run `pnpm dev` to start the development environment:
 
 <CmdBar cmd="pnpm dev" />
 
-<Note>
-  **WARNING:** This only starts the Node.js services. The developer *must* also manually start the backing infrastructure containers (MongoDB, Postgres, Redis, Judge0) for the platform to function. See the **Docker Setup** section for instructions.
-</Note>

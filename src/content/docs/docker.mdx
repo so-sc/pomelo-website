@@ -10,9 +10,11 @@ import ServiceCard from '@/components/ui/ServiceCard.astro';
 
 ## Docker Setup
 
-Pomelo includes Docker Compose definitions in `docker/app/` and `docker/judge0/`. Use the following command to start the backing services for local development.
+Running `pnpm dev` automatically handles setting up and starting all required Docker containers (MongoDB, Postgres, Redis, Judge0). 
 
-### Start the Docker dev stack
+If you prefer to manually control or inspect the backing services, Pomelo includes Docker Compose definitions in `docker/app/` and `docker/judge0/`.
+
+### Manual Container Management
 
 <CodeBlock filename="terminal" language="bash" code={`docker compose --project-name pomelo --env-file .env \\
   -f docker/app/docker-compose.dev.yaml \\
