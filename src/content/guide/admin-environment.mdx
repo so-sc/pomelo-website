@@ -16,7 +16,7 @@ The **Environment** tab gives you direct access to Pomelo's raw environment conf
 | :--- | :--- | :--- |
 | **Caddy Ports** | HTTP port (80), HTTPS port (443) | Change these if Pomelo runs behind another reverse proxy or if the default ports are occupied. |
 | **Admin CLI Port** | Daemon communication port (8462) | Modify the port the Pomelo daemon uses to communicate with the CLI and Admin UI. |
-| **Judge Configuration** | API keys, memory limits, execution timeouts | Fine-tune Judge0 parameters for code evaluation: adjust memory caps, CPU time limits, and API credentials. |
+| **Citron Configuration** | Memory limits, execution timeouts, auth token | Fine-tune the execution engine through `citron.conf` and `languages.toml`: adjust memory caps, CPU time limits, and credentials. |
 | **Database** | `MONGODB_URI` | Override the MongoDB connection string directly. |
 | **Application** | `AUTH_SECRET`, `DOMAIN`, `PROTOCOL` | Core application secrets and routing configuration. |
 

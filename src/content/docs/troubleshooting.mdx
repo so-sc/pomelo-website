@@ -26,7 +26,7 @@ Open the issue that matches what you are seeing, then compare the guidance with 
   <Accordion category="Containers" title="Docker containers fail to start">
     <p>Confirm Docker and Docker Compose v2 are installed and running.</p>
     <p>Confirm .env exists in the repository root.</p>
-    <p>Confirm POSTGRES_PASSWORD and REDIS_PASSWORD are set.</p>
+    <p>Confirm AUTH_SECRET, MONGODB_URI, and CITRON_URL are set.</p>
     <p>Check container status or run pnpm dev to trigger automated setup.</p>
   </Accordion>
 
@@ -36,9 +36,10 @@ Open the issue that matches what you are seeing, then compare the guidance with 
     <p>Check logs with docker logs pomelo-mongo-1.</p>
   </Accordion>
 
-  <Accordion category="Judge0" title="Judge0 jobs fail or time out">
-    <p>Verify JUDGE0_URL is correct.</p>
-    <p>Confirm judge0-server and judge0-workers are running.</p>
-    <p>Confirm judge0-db and judge0-redis are healthy.</p>
+  <Accordion category="Citron" title="Submissions fail or time out">
+    <p>Verify CITRON_URL is correct (`http://citron:2358` when self-hosted).</p>
+    <p>Confirm the citron container is running with `pomelo logs citron`.</p>
+    <p>If Citron is configured with an auth token, confirm CITRON_TOKEN matches it.</p>
+    <p>A busy engine returns 503 and the submission is retried automatically; repeated failures usually mean the container is down.</p>
   </Accordion>
 </div>

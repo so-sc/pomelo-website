@@ -12,23 +12,45 @@ The full set of commands available through the `pomelo` CLI:
 
 | Command | Description |
 | :--- | :--- |
-| `pomelo start` | Starts all Pomelo backend services (Docker containers, databases, server, client, and Judge0 engine). |
+| `pomelo start` | Starts all Pomelo services (Docker containers, database, server, client, and the Citron engine). |
 | `pomelo stop` | Stops all currently running Pomelo services. |
 | `pomelo restart` | Stops then restarts all services. Use this to apply configuration changes. |
 | `pomelo status` | Displays the health and running status of all Pomelo services. |
-| `pomelo logs [service]` | Tails the logs of a specific service. For example, `pomelo logs caddy` or `pomelo logs judge0-server`. |
+| `pomelo logs [source]` | Tails logs for a source. Defaults to `app` (all services). |
 | `pomelo ui` | Opens the Admin UI dashboard in your default web browser (port 8462). |
-| `pomelo uninstall` | Safely uninstalls Pomelo and removes its associated containers, volumes, and systemd service. |
+| `pomelo uninstall` | Uninstalls Pomelo and removes its containers, volumes, and systemd service. |
 
 ### Viewing Logs
 
-You can tail logs for any individual service by name:
+<CmdBar cmd="pomelo logs [source] [--follow] [--tail N]" />
 
-<CmdBar cmd="pomelo logs caddy" />
+`--tail` defaults to 200 lines. Valid sources:
 
-<CmdBar cmd="pomelo logs judge0-server" />
+| Source | What It Shows |
+| :--- | :--- |
+| `app` | All Compose services at once. This is the default. |
+| `daemon` | The `pomelod` daemon's own log file. |
+| `server` | Express API: auth, contests, submission handling. |
+| `client` | Next.js frontend. |
+| `citron` | Execution engine: compilation and run output. |
+| `mongo` | MongoDB database. |
+| `caddy` | Reverse proxy and SSL certificates. |
+
+<CmdBar cmd="pomelo logs citron --follow" />
 
 This is useful for debugging startup failures, network issues, or unexpected submission errors without opening the Admin UI.
+
+### Uninstalling
+
+<CmdBar cmd="pomelo uninstall" />
+
+Each mode prompts for confirmation before doing anything:
+
+| Flag | Behaviour |
+| :--- | :--- |
+| *(none)* | Removes configuration, preserves your contest data. |
+| `--keep-data` | Preserves both data and configuration. |
+| `--full` | Also deletes all data, the database, and configuration. |
 
 ### Opening the Admin UI
 

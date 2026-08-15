@@ -10,16 +10,16 @@ import ServiceCard from '@/components/ui/ServiceCard.astro';
 
 ## Docker Setup
 
-Running `pnpm dev` automatically handles setting up and starting all required Docker containers (MongoDB, Postgres, Redis, Judge0). 
+Running `pnpm dev` automatically handles setting up and starting all required Docker containers (MongoDB and Citron).
 
-If you prefer to manually control or inspect the backing services, Pomelo includes Docker Compose definitions in `docker/app/` and `docker/judge0/`.
+If you prefer to manually control or inspect the backing services, Pomelo includes Docker Compose definitions in `docker/app/` and `docker/citron/`.
 
 ### Manual Container Management
 
 <CodeBlock filename="terminal" language="bash" code={`docker compose --project-name pomelo --env-file .env \\
   -f docker/app/docker-compose.dev.yaml \\
-  -f docker/judge0/docker-compose.dev.yaml \\
-  --project-directory . up mongo judge0-server judge0-workers -d`} />
+  -f docker/citron/docker-compose.dev.yaml \\
+  --project-directory . up mongo citron -d`} />
 
 ### Services
 
@@ -27,12 +27,11 @@ If you prefer to manually control or inspect the backing services, Pomelo includ
   <ServiceCard name="mongo" description="MongoDB database for contest and user data." port="27017" />
   <ServiceCard name="server" description="Express API for auth, contests, and submissions." port="8080" />
   <ServiceCard name="client" description="Participant-facing web app." port="3000" />
-  <ServiceCard name="seed" description="Seeds MongoDB with initial data, then exits." />
-  <ServiceCard name="judge0-server" description="Judge0 core server for code execution." port="2358" />
-  <ServiceCard name="judge0-workers" description="Judge0 worker processes." />
-  <ServiceCard name="judge0-db" description="PostgreSQL for Judge0 internal state." />
-  <ServiceCard name="judge0-redis" description="Redis for Judge0 job queuing." />
+  <ServiceCard name="citron" description="Sandboxed execution engine that compiles and runs submissions." port="2358" />
+  <ServiceCard name="caddy" description="Reverse proxy and automatic SSL." port="80/443" />
 </div>
+
+Citron runs untrusted code, so it publishes no port in production and is reached only over the internal Compose network at `http://citron:2358`. In development it binds to `127.0.0.1:2358` for inspection.
 
 ### Stop containers
 

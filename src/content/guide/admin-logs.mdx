@@ -25,8 +25,8 @@ You can scope the log stream to a specific container to reduce noise:
 | :--- | :--- |
 | `server` | Express API logs: authentication, contest operations, submission handling. |
 | `client` | Next.js frontend logs: page renders, server-side API calls. |
-| `judge0-server` | Judge0 core server: code submission intake and result dispatch. |
-| `judge0-workers` | Judge0 workers: actual code compilation and execution. |
+| `citron` | Execution engine: submission intake, compilation, and execution. |
+| `daemon` | The `pomelod` daemon that manages the containers. |
 | `mongo` | MongoDB database logs. |
 | `caddy` | Reverse proxy and SSL certificate logs. |
 

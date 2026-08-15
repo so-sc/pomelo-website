@@ -21,14 +21,16 @@ Choose how Pomelo connects to its primary database:
 
 If you choose External, you can click **Test Connection** to verify read/write access before saving. If the test fails, the save is aborted so you do not accidentally break your deployment.
 
-### Judge0 Engine
+### Citron Execution Engine
 
 Configure the code evaluation backend:
 
 | Option | Description |
 | :--- | :--- |
-| **Self-hosted** | Runs Judge0 server and worker containers locally. This requires Docker privileged mode and is the default. |
-| **External Judge0** | Point Pomelo at a separately hosted Judge0 instance by providing its URL (e.g., `https://judge0.example.com:2358`). |
+| **Self-hosted** | Runs Citron in Docker alongside the app. Sandboxed, and not privileged. This is the default. |
+| **External Citron** | Connect to a separately hosted Citron instance by providing its URL (e.g., `https://citron.example.com:2358`). |
+
+In self-hosted mode the engine URL is managed for you and always points at `http://citron:2358` on the internal network.
 
 ### Domain & Protocol
 

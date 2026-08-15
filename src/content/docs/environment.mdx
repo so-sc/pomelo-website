@@ -19,9 +19,10 @@ Developers must copy the template `.env.example` file to `.env` before running t
 | `AUTH_SECRET` | *(required)* | Long random secret used by NextAuth for session encryption. |
 | `PORT` | `8080` | Port the Express API listens on. |
 | `MONGODB_URI` | `mongodb://localhost:27017/pomelo` | MongoDB connection string. |
-| `JUDGE0_URL` | `http://judge0-server:2358` | URL configuration for the Judge0 execution engine. |
+| `CITRON_URL` | `http://citron:2358` | URL of the Citron execution engine. |
+| `CITRON_TOKEN` | *(optional)* | Sent as the `X-Judge-Token` header. Only needed if Citron is configured with an auth token. |
 | `DOMAIN` | `localhost:3000` | Frontend domain used by the Next.js client. |
 | `PROTOCOL` | `http` | Protocol for the frontend app. |
 | `BACKEND_URL` | `http://localhost:8080` | URL used by server-side code to call the backend. |
-| `POSTGRES_PASSWORD` | *(required)* | Password for the PostgreSQL database used by Judge0. |
-| `REDIS_PASSWORD` | *(required)* | Password for the Redis queue used by Judge0. |
+
+`AUTH_SECRET`, `MONGODB_URI`, and `CITRON_URL` are required; the stack refuses to start without them.
