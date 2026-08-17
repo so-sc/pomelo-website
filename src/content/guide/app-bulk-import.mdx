@@ -1,0 +1,104 @@
+---
+title: Bulk Question Import
+section: Questions
+sectionOrder: 5
+order: 4
+---
+import CodeBlock from '@/components/ui/CodeBlock.astro';
+import Note from '@/components/ui/Note.astro';
+
+## Bulk Question Import
+
+The question bank accepts a JSON file, so a whole set of questions can be added in one step. Open the question bank, click **Bulk Import**, then either paste the JSON or upload a `.json` file. Nothing is saved until the file validates, and errors are listed per question. Exporting questions produces the same format.
+
+<CodeBlock filename="File shape" language="json" code={`{
+  "questions": [ ... ],
+  "meta": { "description": "optional note about this batch" }
+}`} />
+
+A single question object on its own is also accepted.
+
+### Coding questions
+
+<CodeBlock filename="Coding question" language="json" code={`{
+  "type": "coding",
+  "title": "Two Sum",
+  "description": "Given an array of integers nums and an integer target, ...",
+  "marks": 10,
+  "difficulty": "Easy",
+  "constraints": "2 <= nums.length <= 10^4",
+  "inputFormat": "The function receives nums (a list of integers) and target (an integer).",
+  "outputFormat": "Print the two indices, space separated, in ascending order.",
+  "functionName": "twoSum",
+  "inputVariables": [
+    { "variable": "nums", "type": "int_array" },
+    { "variable": "target", "type": "int" }
+  ],
+  "testcases": [
+    { "input": "4 2 7 11 15 9", "output": "0 1", "isVisible": true, "explanation": "2 + 7 = 9" },
+    { "input": "3 3 2 4 6", "output": "1 2" }
+  ]
+}`} />
+
+| Field | Required | Notes |
+| :--- | :--- | :--- |
+| `type` | Yes | `"coding"` |
+| `title`, `description` | Yes | Plain text. |
+| `marks` | Yes | A non-negative number. |
+| `difficulty` | No | `Easy`, `Medium` or `Hard`. Defaults to `Medium`. |
+| `inputFormat`, `outputFormat` | Yes | Describe the function's parameters and what it must print. |
+| `constraints` | No | One constraint per line. |
+| `functionName` | Yes | The function the candidate implements. |
+| `inputVariables` | Yes | At least one `{ variable, type }` pair, in argument order. |
+| `testcases` | No | `input`, `output`, optional `explanation`, optional `isVisible` (default `false`). |
+| `boilerplateCode` | No | Generated for C, C++, Java and Python when omitted. |
+
+### MCQ questions
+
+<CodeBlock filename="MCQ question" language="json" code={`{
+  "type": "mcq",
+  "title": "Time complexity of binary search",
+  "description": "What is the time complexity of binary search on a sorted array?",
+  "marks": 10,
+  "difficulty": "Easy",
+  "questionType": "Single Correct",
+  "options": ["O(n)", "O(log n)", "O(n log n)", "O(1)"],
+  "correctAnswer": 1
+}`} />
+
+| Field | Required | Notes |
+| :--- | :--- | :--- |
+| `type` | Yes | `"mcq"` |
+| `options` | Yes | Between 2 and 10 options. |
+| `correctAnswer` | Yes | The zero-based index of the correct option, or an array of indices for multiple correct answers. |
+| `questionType` | No | `Single Correct` or `Multiple Correct`. Derived from `correctAnswer` when omitted. |
+
+### Test case encoding
+
+In the app, test case inputs are entered through an editor for each variable. In an import file there is one `input` string instead, holding the same values as whitespace-separated tokens, in the order the variables are declared. The `output` string is the text the candidate's function must print.
+
+| Type | Tokens | Example |
+| :--- | :--- | :--- |
+| `int`, `long`, `float`, `double`, `char`, `string` | The value | `9` |
+| `bool` | `1` or `0` | `1` |
+| `int_array`, `float_array`, `string_array` | Length, then the elements | `[2, 7, 11, 15]` becomes `4 2 7 11 15` |
+| `int_matrix` | Rows, columns, then the cells row by row | `[[1, 2], [3, 4]]` becomes `2 2 1 2 3 4` |
+| `int_linked_list`, `string_linked_list`, `int_doubly_linked_list` | Length, then the node values | `[1, 2, 3]` becomes `3 1 2 3` |
+| `int_linked_list_cyclic` | Length, values, then the index the tail links to, or `-1` | `3 1 2 3 1` |
+| `int_binary_tree`, `int_binary_tree_parent` | Slot count, then level order with `null` for absent children | `6 1 2 3 null null 4` |
+| `int_nary_tree` | Slot count, then the root, `null`, and each node's children followed by `null` | `8 1 null 3 2 4 null 5 6` |
+| `int_graph`, `int_digraph` | Node count, edge count, then `u v` per edge | `4 2 0 1 1 2` |
+| `int_weighted_graph`, `int_weighted_digraph` | Node count, edge count, then `u v w` per edge | `3 2 0 1 5 1 2 7` |
+
+Values for several variables run together in one line, left to right. What each type means is covered in [Data Types & Input Format](/guide#app-data-types).
+
+### What the importer rejects
+
+*   Function and variable names that are not valid identifiers, are duplicated, are keywords in C, C++, Java or Python, or clash with a name the generated code uses (such as `main`, `i`, `ListNode` or `TreeNode`).
+*   Variable names that collide with a generated one, such as `nums_size` alongside `nums`.
+*   A test case `input` whose tokens do not match the declared types, for example too few array elements or an edge pointing at a node that does not exist.
+*   MCQ answer indices with no matching option.
+
+<Note>
+  <p>Duplicate titles are imported and reported as a warning, not an error.</p>
+</Note>

@@ -4,12 +4,39 @@ section: API Reference
 sectionOrder: 6
 order: 3
 ---
+import CodeBlock from '@/components/ui/CodeBlock.astro';
+import Note from '@/components/ui/Note.astro';
 
 ## Submissions API
 
-Endpoints for handling code execution and test submissions.
+Endpoints for handling code execution and test submissions. Coding endpoints are graded by the Citron execution engine; both stream their result as newline-delimited JSON rather than a single response body.
 
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `POST` | `/api/contests/:id/run` | Performs a dry-run code execution against sample test cases. |
-| `POST` | `/api/submit` | The unified submission endpoint for all question types. |
+| `POST` | `/api/contests/:id/run` | Dry-run: executes code against public/sample test cases only. Result is not persisted. |
+| `POST` | `/api/submit` | The unified submission endpoint for all question types. For coding questions, runs against every test case (public and hidden) and persists the result. |
+
+### Request Body (coding questions)
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `languageId` | `number` | The Citron language id to compile/run against (see `config/citron/languages.toml`). |
+| `code` | `string` | Source code. Rejected with `400` if longer than 65536 characters. |
+
+### Streamed Response
+
+Both endpoints respond with one JSON object per line. The first line is sent immediately so proxies don't treat the connection as idle:
+
+<CodeBlock filename="stream" language="json" code={`{"type":"progress","completed":0,"total":3}
+{"type":"progress","completed":1,"total":3}
+{"type":"result","status":"Accepted","executionTime":42,"memoryUsed":2048}`} />
+
+| Field | Description |
+| :--- | :--- |
+| `status` | One of `Accepted`, `Wrong Answer`, `Compilation Error`, `Time Limit Exceeded`, `Runtime Error`, `System Error`. |
+| `executionTime` | Execution time in milliseconds. |
+| `memoryUsed` | Peak memory usage in kilobytes. |
+
+<Note>
+  <p>If Citron is busy it returns `503`; the request is retried automatically with backoff before surfacing an error. See [Troubleshooting](/docs#troubleshooting) if failures persist.</p>
+</Note>

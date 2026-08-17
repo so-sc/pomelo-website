@@ -1,0 +1,233 @@
+---
+title: Data Types & Input Format
+section: Questions
+sectionOrder: 5
+order: 3
+---
+import CodeBlock from '@/components/ui/CodeBlock.astro';
+import Mermaid from '@/components/ui/Mermaid.astro';
+import Note from '@/components/ui/Note.astro';
+
+## Data Types & Input Format
+
+A code question declares a function name and a list of typed input variables. Every test case then supplies a value for each variable, plus the output expected from it.
+
+The input editor changes shape with the type you pick, so you enter values (elements, nodes, edges) instead of raw input text. Citron generates the function stub in each enabled language, passes your values in as arguments, and compares what the candidate prints against the expected output.
+
+<CodeBlock filename="Stub for nums: int_array, target: int" language="python" code={`def twoSum(nums, target):
+    # write your code here`} />
+
+<Note>
+  <p>Input variables lock as soon as a test case exists. Clear the test cases to rename a variable or change its type.</p>
+</Note>
+
+### Primitives
+
+`int` `long` `float` `double` `char` `string` `bool`
+
+Each primitive is a single field. `bool` is a checkbox instead of a text field.
+
+<CodeBlock filename="Editor" language="text" code={`target  (int)     9
+label   (string)  apple
+ready   (bool)    [x]`} />
+
+| Type | What to enter |
+| :--- | :--- |
+| `int`, `long` | A whole number, such as `9` or `-42`. |
+| `float`, `double` | A decimal number, such as `2.5`. |
+| `char` | Exactly one character. |
+| `string` | One token, with no spaces in it. |
+| `bool` | Nothing to type. Tick the box for `true`. |
+
+### Arrays
+
+#### `int_array`, `float_array`, `string_array`
+
+**Add Element** appends a field. The array follows field order, and an empty list is a valid empty array.
+
+<CodeBlock filename="Editor" language="text" code={`nums (int_array)
+
+  Element 1    2
+  Element 2    7
+  Element 3    11
+  Element 4    15
+
+  + Add Element`} />
+
+<CodeBlock filename="Value passed to the function" language="text" code={`┌────┬────┬────┬────┐
+│  2 │  7 │ 11 │ 15 │
+└────┴────┴────┴────┘`} />
+
+#### `int_matrix`
+
+**Add Row** adds a row and **Add Column** adds a cell inside it. Every row must have the same number of columns. Interval problems use a matrix too, one `[start, end]` per row.
+
+<CodeBlock filename="Editor" language="text" code={`grid (int_matrix)
+
+  Row 1
+    Column 1    1
+    Column 2    2
+    Column 3    3
+  Row 2
+    Column 1    4
+    Column 2    5
+    Column 3    6
+
+  + Add Row`} />
+
+<CodeBlock filename="Value passed to the function" language="text" code={`┌───┬───┬───┐
+│ 1 │ 2 │ 3 │
+├───┼───┼───┤
+│ 4 │ 5 │ 6 │
+└───┴───┴───┘`} />
+
+### Linked lists
+
+#### `int_linked_list`, `string_linked_list`
+
+The same element list as an array. The first field is the head, and the nodes chain in field order. The function receives the head node.
+
+<CodeBlock filename="Editor" language="text" code={`head (int_linked_list)
+
+  Element 1    1
+  Element 2    2
+  Element 3    3
+
+  + Add Element`} />
+
+<Mermaid code={`flowchart LR
+  A["1"] --> B["2"] --> C["3"] --> N["null"]`} />
+
+#### `int_doubly_linked_list`
+
+Identical editor. Each node also links back to the one before it.
+
+<Mermaid code={`flowchart LR
+  A["1"] <--> B["2"] <--> C["3"]`} />
+
+#### `int_linked_list_cyclic`
+
+An element list plus a **Tail links to** dropdown. Pick the node the last node should point at, or pick *no cycle* for a plain list.
+
+<CodeBlock filename="Editor" language="text" code={`head (int_linked_list_cyclic)
+
+  Element 1    1
+  Element 2    2
+  Element 3    3
+
+  Tail links to    node 2 (2)`} />
+
+<Mermaid code={`flowchart LR
+  A["1"] --> B["2"] --> C["3"]
+  C -- tail --> B`} />
+
+### Trees
+
+#### `int_binary_tree`
+
+Slots are read in level order, left to right. Each value is followed by a slot for its left child and a slot for its right child. Tick **null** when a child is absent, which empties that field and gives it no children of its own.
+
+<CodeBlock filename="Editor" language="text" code={`root (int_binary_tree)
+
+  1    1       root
+  2    2       left of 1
+  3    3       right of 1
+  4    null    left of 2
+  5    null    right of 2
+  6    4       left of 3
+  7    5       right of 3
+
+  + Add Node`} />
+
+<Mermaid code={`flowchart TD
+  R["1"] --> T["2"]
+  R --> H["3"]
+  H --> F["4"]
+  H --> V["5"]`} />
+
+Binary search tree questions use this same type.
+
+#### `int_binary_tree_parent`
+
+The same editor and the same level order. Nodes additionally carry a `parent` link, so the candidate can walk upward.
+
+<Mermaid code={`flowchart TD
+  R["1"] --> T["2"]
+  R --> H["3"]
+  T -. parent .-> R
+  H -. parent .-> R`} />
+
+#### `int_nary_tree`
+
+Nodes have any number of children, so the order is the root, then a null, then each node's children followed by a null.
+
+<CodeBlock filename="Editor" language="text" code={`root (int_nary_tree)
+
+  1    1       root
+  2    null    end of the root
+  3    3       child of 1
+  4    2       child of 1
+  5    4       child of 1
+  6    null    end of 1's children
+  7    5       child of 3
+  8    6       child of 3
+
+  + Add Node`} />
+
+<Mermaid code={`flowchart TD
+  A["1"] --> B["3"]
+  A --> C["2"]
+  A --> D["4"]
+  B --> E["5"]
+  B --> F["6"]`} />
+
+### Graphs
+
+Graph nodes are not named. Enter how many nodes there are, and they are numbered `0` to `n-1`. Each edge row then references two of those numbers. To leave a node isolated, raise the node count and add no edge for it.
+
+#### `int_graph`, `int_digraph`
+
+<CodeBlock filename="Editor" language="text" code={`g (int_digraph)
+
+  Nodes    4        numbered 0…3
+
+  Edge 1   0 → 1
+  Edge 2   1 → 2
+  Edge 3   2 → 3
+
+  + Add Edge`} />
+
+In `int_graph` an edge connects both ways:
+
+<Mermaid code={`flowchart LR
+  a0(("0")) --- a1(("1")) --- a2(("2")) --- a3(("3"))`} />
+
+In `int_digraph` it points from the first node to the second:
+
+<Mermaid code={`flowchart LR
+  b0(("0")) --> b1(("1")) --> b2(("2")) --> b3(("3"))`} />
+
+#### `int_weighted_graph`, `int_weighted_digraph`
+
+The same editors, with a weight on every edge row.
+
+<CodeBlock filename="Editor" language="text" code={`g (int_weighted_graph)
+
+  Nodes    3        numbered 0…2
+
+  Edge 1   0 → 1    weight 5
+  Edge 2   1 → 2    weight 7
+
+  + Add Edge`} />
+
+<Mermaid code={`flowchart LR
+  n0(("0")) ---|5| n1(("1"))
+  n1 ---|7| n2(("2"))`} />
+
+### Expected output
+
+The expected output box is plain text, compared against what the candidate's function prints. Write the answer flat, in the format the problem statement asks for, such as `0 1` for a pair of indices or `1 2 3` for a list. Keep that format the same across every test case in a question.
+
+<Note>
+  <p>Some types cannot be used together in one question: <code>int_binary_tree</code> with <code>int_binary_tree_parent</code>, and <code>int_linked_list</code> with <code>string_linked_list</code>.</p>
+</Note>
