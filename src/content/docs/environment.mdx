@@ -19,10 +19,16 @@ Developers must copy the template `.env.example` file to `.env` before running t
 | `AUTH_SECRET` | *(required)* | Long random secret used by NextAuth for session encryption. |
 | `PORT` | `8080` | Port the Express API listens on. |
 | `MONGODB_URI` | `mongodb://localhost:27017/pomelo` | MongoDB connection string. |
-| `CITRON_URL` | `http://citron:2358` | URL of the Citron execution engine. |
+| `CITRON_URL` | `http://localhost:2358` | URL of the Citron execution engine. Use `http://citron:2358` only when the server runs inside the Compose network (production installs). |
 | `CITRON_TOKEN` | *(optional)* | Sent as the `X-Judge-Token` header. Only needed if Citron is configured with an auth token. |
 | `DOMAIN` | `localhost:3000` | Frontend domain used by the Next.js client. |
 | `PROTOCOL` | `http` | Protocol for the frontend app. |
 | `BACKEND_URL` | `http://localhost:8080` | URL used by server-side code to call the backend. |
+| `AUTH_PROVIDERS` | `credentials` | Comma-separated enabled sign-in methods: `credentials`, `google`. In production, pomelod sets this from `auth.providers` in `config.yaml`. |
+| `GOOGLE_CLIENT_ID` | *(empty)* | Google OAuth client ID. |
+| `GOOGLE_CLIENT_SECRET` | *(empty)* | Google OAuth client secret. |
+
 
 `AUTH_SECRET`, `MONGODB_URI`, and `CITRON_URL` are required; the stack refuses to start without them.
+
+To enable Google sign-in, register `<PROTOCOL>://<DOMAIN>/api/auth/callback/google` as the redirect URI in Google Cloud Console.
